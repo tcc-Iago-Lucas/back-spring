@@ -41,7 +41,9 @@ public class User implements UserDetails{
 		this.email = cadastro.getEmail();
 		this.senha = cadastro.getSenha();
 	}
-	
+	public User() {
+		
+	}
 	public String getNome() {
 		return nome;
 	}

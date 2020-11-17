@@ -5,6 +5,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.cm.controller.dto.CadastrarDTO;
+import com.cm.controller.dto.UserDTO;
 import com.cm.modelo.User;
 import com.cm.repository.UserRepository;
 
@@ -23,6 +24,13 @@ public class UserService {
 		return repo.save(u);
 		
 		
+	}
+
+
+
+	public User find(Long id) {
+		// TODO Auto-generated method stub
+		return  repo.findById(id).get();
 	}
 
 }
