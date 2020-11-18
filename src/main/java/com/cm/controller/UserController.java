@@ -32,7 +32,6 @@ public class UserController {
 	@Autowired private TokenService tokenService;
 	
 	@PostMapping
-	@RequestMapping("/cadastrar")
 	public ResponseEntity<Object> cadastrar(@RequestBody CadastrarDTO cadastrarDTO){
 		UsernamePasswordAuthenticationToken dadosLogin = cadastrarDTO.converter();
 		User  user = s.create(cadastrarDTO);

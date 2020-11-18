@@ -37,9 +37,9 @@ public class User implements UserDetails{
 	}
 
 	public User(CadastrarDTO cadastro) {
-		this.nome = cadastro.getNome();
+		this.nome = cadastro.getName();
 		this.email = cadastro.getEmail();
-		this.senha = cadastro.getSenha();
+		this.senha = cadastro.getPassword();
 	}
 	public User() {
 		

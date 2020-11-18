@@ -5,16 +5,16 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 public class CadastrarDTO {
 
 	
-	private String nome;
+	private String name;
 	private String email;
-	private String senha;
+	private String password;
 	
 	
-	public String getNome() {
-		return nome;
+	public String getName() {
+		return name;
 	}
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setName(String name) {
+		this.name = name;
 	}
 	public String getEmail() {
 		return email;
@@ -22,14 +22,14 @@ public class CadastrarDTO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getSenha() {
-		return senha;
+	public String getPassword() {
+		return password;
 	}
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	public UsernamePasswordAuthenticationToken converter() {
-		return new UsernamePasswordAuthenticationToken(email, senha);
+		return new UsernamePasswordAuthenticationToken(email, password);
 	}
 	
 	
