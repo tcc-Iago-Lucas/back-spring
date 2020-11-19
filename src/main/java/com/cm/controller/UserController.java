@@ -8,6 +8,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -46,10 +47,14 @@ public class UserController {
 	}
 	
 	@RequestMapping("/{id}")
-	public User show(@PathVariable Long id) {
-		
-		return s.find(id);
-	
+	public UserDTO show(@PathVariable Long id) {
+		return s.show(id);
 	}
-
+	
+	@PatchMapping("/{id}")
+	public ResponseEntity<?> update(@RequestBody UserDTO u, @PathVariable Long id){
+		
+		s.update(id, u);
+		return ResponseEntity.ok().build();
+	}
 }
