@@ -41,7 +41,7 @@ public class UserService {
 	}
 
 
-	private User find(Long id) {
+	public User find(Long id) {
 		Optional<User> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Usuario não encontrado com esse id: " + id));
@@ -56,6 +56,13 @@ public class UserService {
 		}
 		
 		 repo.save(user);
+	}
+
+
+
+	public void delete(Long id) {
+			repo.delete(find(id));
+		
 	}
 
 }

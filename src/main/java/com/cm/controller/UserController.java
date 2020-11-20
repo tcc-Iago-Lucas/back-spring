@@ -8,6 +8,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -57,4 +58,11 @@ public class UserController {
 		s.update(id, u);
 		return ResponseEntity.ok().build();
 	}
+	@DeleteMapping("/{id}")
+	public ResponseEntity<?>  delete(@PathVariable Long id){
+		s.delete(id);
+		
+		return ResponseEntity.ok().build();
+	}
+	
 }

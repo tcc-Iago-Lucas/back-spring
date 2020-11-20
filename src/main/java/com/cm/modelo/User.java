@@ -2,15 +2,18 @@ package com.cm.modelo;
 
 import java.util.Collection;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.cm.controller.dto.CadastrarDTO;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class User implements UserDetails{
@@ -25,8 +28,9 @@ public class User implements UserDetails{
 	private String nome;
 	private String email;
 	private String senha;
-	
-	
+	@JsonBackReference
+	@OneToOne(cascade = CascadeType.ALL, mappedBy="user")
+	private Turma turma;
 	
 	public Long getId() {
 		return id;
@@ -34,6 +38,14 @@ public class User implements UserDetails{
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+	
+	public User(String nome, String email, String senha, Turma turma) {
+		super();
+		this.nome = nome;
+		this.email = email;
+		this.senha = senha;
+		this.turma = turma;
 	}
 
 	public User(CadastrarDTO cadastro) {
@@ -57,6 +69,15 @@ public class User implements UserDetails{
 	
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	
+
+	public Turma getTurma() {
+		return turma;
+	}
+
+	public void setTurma(Turma turma) {
+		this.turma = turma;
 	}
 
 	@Override

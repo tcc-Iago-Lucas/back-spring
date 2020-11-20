@@ -50,7 +50,10 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 		.antMatchers(HttpMethod.POST, "/auth").permitAll()
+		.antMatchers( "/user").permitAll()
 		.antMatchers( "/user/*").permitAll()
+		.antMatchers( "/turma/*").permitAll()
+		.antMatchers( "/turma").permitAll()
 		.anyRequest().authenticated()
 		.and().csrf().disable()
 		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
