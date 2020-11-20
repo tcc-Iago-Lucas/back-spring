@@ -16,10 +16,12 @@ public class TurmaService {
 
 	@Autowired private UserService userService;
 	@Autowired private TurmaRepository repo;
+	@Autowired private UserTurmaService utservice;
 	
 	public Turma create(TurmaDTO turmaDTO) {
 		User u = userService.find(turmaDTO.getUser_id());
 		Turma t = new Turma(u, turmaDTO.getName());
+		utservice.create(u,t);
 		return repo.save(t);
 	}
 
