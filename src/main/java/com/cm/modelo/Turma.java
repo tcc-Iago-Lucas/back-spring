@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -21,14 +23,15 @@ public class Turma implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
 	@JsonManagedReference
 	@ManyToOne
 	@JoinColumn( name = "id_user")
 	private User user;
+	private String codigo;
 
 	private String name;
-	
-	@OneToMany(mappedBy="id.turma")
+	@OneToMany(mappedBy="id.turma", cascade = CascadeType.REMOVE)
 	private Set<UserTurma> UsuariosTurma = new HashSet<>();
 
 	public Turma() {
@@ -48,7 +51,7 @@ public class Turma implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
+	@JsonIgnore
 	public User getUser() {
 		return user;
 	}
@@ -65,7 +68,7 @@ public class Turma implements Serializable {
 		this.name = name;
 	}
 	
-
+	
 	public Set<UserTurma> getUsuariosTurma() {
 		return UsuariosTurma;
 	}
@@ -97,6 +100,14 @@ public class Turma implements Serializable {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	public String getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
 	}
 	
 }

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -33,5 +34,19 @@ public class TurmaController {
 		return ResponseEntity.ok(service.show(id));
 	}
 	
+	@PostMapping
+	@RequestMapping("/{turmaID}/user/{userID}")
+	public ResponseEntity<?> IncluirAlunoNaTurma(@PathVariable Long turmaID, @PathVariable Long userID){
+		service.incluirAlunoNaTurma(turmaID, userID);
+		return ResponseEntity.ok().build();
+	}
+	
+	
+	@RequestMapping(path= "/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<?> deleteTurma(@PathVariable Long id){
+		service.deleteTurma(id);
+		return ResponseEntity.ok().build();
+		
+	}
 	
 }

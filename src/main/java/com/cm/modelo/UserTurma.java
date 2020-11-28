@@ -6,13 +6,16 @@ import java.math.BigDecimal;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class UserTurma implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	@JsonIgnore
 	@EmbeddedId
 	private UserTurmaPK id =  new UserTurmaPK();
-	private String codigo;
+	
 	private BigDecimal ranking;
 	
 	
@@ -28,11 +31,10 @@ public class UserTurma implements Serializable {
 		super();
 	}
 
-
 	public User getUser() {
 		return id.getUser();
 	}
-	
+	@JsonIgnore
 	public Turma getTurma() {
 		return id.getTurma();
 	}
@@ -43,12 +45,7 @@ public class UserTurma implements Serializable {
 	public void setId(UserTurmaPK id) {
 		this.id = id;
 	}
-	public String getCodigo() {
-		return codigo;
-	}
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
-	}
+	
 	public BigDecimal getRanking() {
 		return ranking;
 	}

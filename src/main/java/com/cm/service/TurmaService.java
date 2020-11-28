@@ -21,15 +21,34 @@ public class TurmaService {
 	public Turma create(TurmaDTO turmaDTO) {
 		User u = userService.find(turmaDTO.getUser_id());
 		Turma t = new Turma(u, turmaDTO.getName());
+		t = repo.save(t);
 		utservice.create(u,t);
-		return repo.save(t);
+		return t;
 	}
+	
+	
 
-	public Object show(Long id) {
+	public Turma show(Long id) {
 		Optional<Turma> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
-				"Usuario não encontrado com esse id: " + id));
+				"Turma não encontrada com esse id: " + id));
 	}
+
+	public void incluirAlunoNaTurma(Long turmaID, Long userID) {
+		User u = userService.find(userID);
+		Turma t = show(turmaID);
+		utservice.create(u,t);
+		
+	}
+
+
+
+	public void deleteTurma(Long id) {
+		Turma t = show(id);
+		repo.delete(t);
+		
+	}
+	
 
 	
 	

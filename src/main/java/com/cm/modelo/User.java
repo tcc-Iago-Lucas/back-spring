@@ -17,6 +17,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.cm.controller.dto.CadastrarDTO;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class User implements UserDetails{
@@ -34,6 +35,7 @@ public class User implements UserDetails{
 	@JsonBackReference
 	@OneToMany( mappedBy="user")
 	private List<Turma> turmas = new ArrayList<>();
+	
 	
 	@OneToMany(mappedBy="id.user")
 	private Set<UserTurma> UsuariosTurma = new HashSet<>();
@@ -87,7 +89,7 @@ public class User implements UserDetails{
 	public void setTurmas(List<Turma> turmas) {
 		this.turmas = turmas;
 	}
-
+	@JsonIgnore
 	public Set<UserTurma> getUsuariosTurma() {
 		return UsuariosTurma;
 	}
