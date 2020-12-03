@@ -10,6 +10,7 @@ import com.cm.modelo.Turma;
 import com.cm.modelo.User;
 import com.cm.repository.TurmaRepository;
 import com.cm.service.exceptions.ObjectNotFoundException;
+import java.util.UUID;
 
 @Service
 public class TurmaService {
@@ -48,8 +49,16 @@ public class TurmaService {
 		repo.delete(t);
 		
 	}
-	
+	public void updateTurma(Turma t){
+		repo.save(t);
+	}
 
-	
-	
+    public String gerarCodigo(Long id) {
+		Turma t = show(id);
+		String codigo = UUID.randomUUID().toString();
+		t.setCodigo(codigo);
+		updateTurma(t);
+		return  codigo;
+
+    }
 }

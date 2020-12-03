@@ -5,10 +5,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @SpringBootApplication
-public class TesteApplication {
+public class TccApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(TesteApplication.class, args);
+		SpringApplication.run(TccApplication.class, args);
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		String password = "yawinpassword";
 		String encodedPassword = passwordEncoder.encode(password);

@@ -48,5 +48,10 @@ public class TurmaController {
 		return ResponseEntity.ok().build();
 		
 	}
+
+	@RequestMapping("/{id}/gerar-codigo")
+	public ResponseEntity<?> gerarCodigo(@PathVariable Long id){
+		return  ResponseEntity.ok( service.gerarCodigo(id));
+	}
 	
 }
