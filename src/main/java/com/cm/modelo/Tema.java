@@ -8,6 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Tema implements Serializable {
@@ -19,8 +22,11 @@ public class Tema implements Serializable {
 
 
 	private String tema;
-
+	@JsonBackReference
+	@OneToMany( mappedBy="tema")
 	private List<Desempenho> desempenhos = new ArrayList<>();
+	@JsonBackReference
+	@OneToMany( mappedBy="tema")
 	private List<Questao> questaos = new ArrayList<>();
 
 	public Tema(Long id, String tema) {
