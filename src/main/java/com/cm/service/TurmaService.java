@@ -55,7 +55,7 @@ public class TurmaService {
 
     public String gerarCodigo(Long id) {
 		Turma t = show(id);
-		String codigo = UUID.randomUUID().toString();
+		String codigo = UUID.randomUUID().toString().substring(0,6);
 		t.setCodigo(codigo);
 		updateTurma(t);
 		return  codigo;

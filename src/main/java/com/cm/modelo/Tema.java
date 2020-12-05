@@ -1,6 +1,8 @@
 package com.cm.modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,10 +16,12 @@ public class Tema implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
+
 	private String tema;
-	
-	
+
+	private List<Desempenho> desempenhos = new ArrayList<>();
+	private List<Questao> questaos = new ArrayList<>();
 
 	public Tema(Long id, String tema) {
 		super();
@@ -34,6 +38,7 @@ public class Tema implements Serializable {
 
 	public Tema() {}
 
+
 	public Long getId() {
 		return id;
 	}
@@ -48,6 +53,22 @@ public class Tema implements Serializable {
 
 	public void setTema(String tema) {
 		this.tema = tema;
+	}
+
+	public List<Desempenho> getDesempenhos() {
+		return desempenhos;
+	}
+
+	public void setDesempenhos(List<Desempenho> desempenhos) {
+		this.desempenhos = desempenhos;
+	}
+
+	public List<Questao> getQuestaos() {
+		return questaos;
+	}
+
+	public void setQuestaos(List<Questao> questaos) {
+		this.questaos = questaos;
 	}
 
 	@Override
