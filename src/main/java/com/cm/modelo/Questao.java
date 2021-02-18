@@ -1,15 +1,15 @@
 package com.cm.modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+import org.springframework.context.annotation.Lazy;
 
 @Entity
 public class Questao implements Serializable {
@@ -26,6 +26,18 @@ public class Questao implements Serializable {
    	@JoinColumn( name = "id_tema")
     private Tema tema;
 
+    @JsonManagedReference
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(mappedBy = "questao")
+    private List<Alternativa> alternativas = new ArrayList<Alternativa>();
+
+    public List<Alternativa> getAlternativas() {
+        return alternativas;
+    }
+
+    public void setAlternativas(List<Alternativa> alternativas) {
+        this.alternativas = alternativas;
+    }
 
     public Questao () {}
 
@@ -48,5 +60,13 @@ public class Questao implements Serializable {
 
     public void setTema(Tema tema) {
         this.tema = tema;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

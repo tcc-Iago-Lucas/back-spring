@@ -56,7 +56,7 @@ public class UserController {
 	public ResponseEntity<?> update(@RequestBody UserDTO u, @PathVariable Long id){
 		
 		s.update(id, u);
-		return ResponseEntity.ok().build();
+		return ResponseEntity.noContent().build();
 	}
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?>  delete(@PathVariable Long id){

@@ -26,12 +26,14 @@ public class Turma implements Serializable {
 	
 	@JsonManagedReference
 	@ManyToOne
-	@JoinColumn( name = "id_user")
+	@JoinColumn( name = "user_id")
 	private User user;
 	private String codigo;
 
 	private String name;
-	@OneToMany(mappedBy="id.turma", cascade = CascadeType.REMOVE)
+
+	@JsonManagedReference
+	@OneToMany(mappedBy="turma", cascade = CascadeType.REMOVE)
 	private Set<UserTurma> UsuariosTurma = new HashSet<>();
 
 	public Turma() {

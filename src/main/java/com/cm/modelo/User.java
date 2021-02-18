@@ -12,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -35,9 +37,10 @@ public class User implements UserDetails{
 	@JsonBackReference
 	@OneToMany( mappedBy="user")
 	private List<Turma> turmas = new ArrayList<>();
-	
-	
-	@OneToMany(mappedBy="id.user")
+
+	@JsonBackReference
+	@OneToMany(mappedBy="user")
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private Set<UserTurma> UsuariosTurma = new HashSet<>();
 	
 	public Long getId() {

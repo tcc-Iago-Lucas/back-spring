@@ -3,49 +3,59 @@ package com.cm.modelo;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
+import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class UserTurma implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	@JsonIgnore
-	@EmbeddedId
-	private UserTurmaPK id =  new UserTurmaPK();
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	
 	private BigDecimal ranking;
 	
-	
-	
+	@ManyToOne
+	@JsonManagedReference
+	@JoinColumn(name = "id_user")
+	private User user;
 
-	public UserTurma(User user, Turma turma) {
-		this.id.setUser(user);
-		this.getId().setTurma(turma);
+	@JsonBackReference
+	@ManyToOne
+	@JoinColumn(name = "id_turma")
+	private Turma turma;
+
+	public UserTurma( User user, Turma turma) {
+
+		this.user = user;
+		this.turma = turma;
 	}
 
-	
 	public UserTurma() {
 		super();
 	}
 
 	public User getUser() {
-		return id.getUser();
+		return user;
 	}
-	@JsonIgnore
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	public Turma getTurma() {
-		return id.getTurma();
+		return turma;
 	}
-	
-	public UserTurmaPK getId() {
-		return id;
+
+	public void setTurma(Turma turma) {
+		this.turma = turma;
 	}
-	public void setId(UserTurmaPK id) {
-		this.id = id;
-	}
-	
+
 	public BigDecimal getRanking() {
 		return ranking;
 	}
