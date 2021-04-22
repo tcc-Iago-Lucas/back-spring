@@ -25,7 +25,7 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 	private AutenticacaoService autenticacaoService;
 	
 	@Autowired
-	private com.cm.service.TokenService token;
+	private com.cm.service.TokenService tokenService;
 	
 	@Autowired
 	private UserRepository repo;
@@ -55,10 +55,12 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 		.antMatchers( "/turma/*").permitAll()
 		.antMatchers( "/turma").permitAll()
 		.antMatchers("/turma/*/*/*").permitAll()
+		.antMatchers(HttpMethod.POST, "/tema").authenticated()
+		.antMatchers(HttpMethod.GET, "/tema/*").authenticated()
 		.anyRequest().permitAll()
 		.and().csrf().disable()
 		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-		.and().addFilterBefore(new AutenticacaoViaTokenFilter(token, repo), UsernamePasswordAuthenticationFilter.class);
+		.and().addFilterBefore(new AutenticacaoViaTokenFilter(tokenService, repo), UsernamePasswordAuthenticationFilter.class);
 	}
 	
 	

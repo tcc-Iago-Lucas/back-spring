@@ -1,16 +1,16 @@
 package com.cm.service;
 
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.cm.controller.dto.AlternativaDTO;
 import com.cm.modelo.Alternativa;
 import com.cm.modelo.Questao;
 import com.cm.repository.AlternativaRepository;
 import com.cm.service.exceptions.ObjectNotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class AlternativaService {

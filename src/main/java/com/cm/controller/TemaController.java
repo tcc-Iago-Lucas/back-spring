@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,7 +32,8 @@ public class TemaController {
 	}
 	
 	@RequestMapping("/{id}")
-	public ResponseEntity<Tema> showTema(@PathVariable Long id){
+	public ResponseEntity<Tema> showTema(@RequestHeader("Authorization") String token,  @PathVariable Long id){
+		System.out.println(token);
 		return ResponseEntity.ok(service.show(id));
 	}
 	
