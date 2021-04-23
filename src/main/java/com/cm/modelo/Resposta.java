@@ -26,6 +26,10 @@ public class Resposta implements Serializable {
    	@JoinColumn( name = "id_userturma")
 	private UserTurma userTurma;
 	
+	@ManyToOne
+   	@JoinColumn( name = "id_tema")
+	private Tema tema;
+	
 	private Boolean acertou;
 	
 	
@@ -42,6 +46,7 @@ public class Resposta implements Serializable {
 		this.acertou = alternativa.getCerto();
 		this.questao = alternativa.getQuestao();
 		this.userTurma = userTurma;
+		this.tema = alternativa.getQuestao().getTema();
 	}
 
 
@@ -68,6 +73,26 @@ public class Resposta implements Serializable {
 	}
 	public void setAcertou(Boolean acertou) {
 		this.acertou = acertou;
+	}
+
+
+	public UserTurma getUserTurma() {
+		return userTurma;
+	}
+
+
+	public void setUserTurma(UserTurma userTurma) {
+		this.userTurma = userTurma;
+	}
+
+
+	public Tema getTema() {
+		return tema;
+	}
+
+
+	public void setTema(Tema tema) {
+		this.tema = tema;
 	}
 	
 	

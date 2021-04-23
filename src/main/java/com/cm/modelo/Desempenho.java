@@ -25,16 +25,65 @@ public class Desempenho implements Serializable {
     @ManyToOne
 	@JoinColumn( name = "id_tema")
     private Tema tema;
+    
+	@ManyToOne
+   	@JoinColumn( name = "id_userturma")
+	private UserTurma userTurma;
 
 
     public Desempenho(){ }
 
+    
+    
 
-    public Float getAproveitamento() {
+    public Tema getTema() {
+		return tema;
+	}
+
+
+
+
+	public void setTema(Tema tema) {
+		this.tema = tema;
+	}
+
+
+
+
+	public Float getAproveitamento() {
         return aproveitamento;
     }
 
     public void setAproveitamento(Float aproveitamento) {
         this.aproveitamento = aproveitamento;
     }
+
+
+
+
+	public Long getId() {
+		return id;
+	}
+
+
+
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
+
+
+	public UserTurma getUserTurma() {
+		return userTurma;
+	}
+
+
+
+
+	public void setUserTurma(UserTurma userTurma) {
+		this.userTurma = userTurma;
+	}
+    
 }

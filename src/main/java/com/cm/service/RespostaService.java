@@ -1,5 +1,6 @@
 package com.cm.service;
 
+import java.util.List;
 import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ public class RespostaService {
 	@Autowired private UserService userService;
 	@Autowired private AlternativaService alternativaService;
 	@Autowired private RespostaRepository repo;
+	@Autowired private DesempenhoService desempenhoService;
 
 	private Boolean haveAtivo = false;
 	private Turma turma = new Turma() ;
@@ -56,10 +58,23 @@ public class RespostaService {
 		
 		Resposta resposta = new Resposta(alternativa, this.userTurma);
 		
-		return repo.save(resposta);
+		resposta = repo.save(resposta);
 		
+		temCalcularDesempenho(alternativa);
+		
+		
+		return resposta;
 		
 	}
+	
+	private void temCalcularDesempenho(Alternativa alternativa) {
+		int nquestaoPorTema = alternativa.getQuestao().getTema().getQuestaos().size();
+		List<Resposta> nTemaRespondido = repo.nTemaRespondido(alternativa.getQuestao().getTema(), this.userTurma);
+		if(nquestaoPorTema == nTemaRespondido.size()) {
+			desempenhoService.calcularPorTema(nTemaRespondido, this.userTurma);
+		}
+	}
+	
 	public Turma getTurma() {
 		return turma;
 	}

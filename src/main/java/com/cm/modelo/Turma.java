@@ -77,7 +77,7 @@ public class Turma implements Serializable {
 	public Set<UserTurma> getUsuariosTurma() {
 		return UsuariosTurma;
 	}
-
+	@JsonIgnore
 	public void setUsuariosTurma(Set<UserTurma> usuariosTurma) {
 		UsuariosTurma = usuariosTurma;
 	}
