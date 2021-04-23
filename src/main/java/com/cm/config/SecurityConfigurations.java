@@ -57,6 +57,7 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 		.antMatchers("/turma/*/*/*").permitAll()
 		.antMatchers(HttpMethod.POST, "/tema").authenticated()
 		.antMatchers(HttpMethod.GET, "/tema/*").authenticated()
+		.antMatchers(HttpMethod.POST, "/resposta").authenticated()
 		.anyRequest().permitAll()
 		.and().csrf().disable()
 		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)

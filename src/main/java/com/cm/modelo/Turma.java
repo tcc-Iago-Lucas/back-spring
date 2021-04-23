@@ -31,6 +31,8 @@ public class Turma implements Serializable {
 	private String codigo;
 
 	private String name;
+	
+	private Boolean ativo;
 
 	@JsonManagedReference
 	@OneToMany(mappedBy="turma", cascade = CascadeType.REMOVE)
@@ -44,6 +46,7 @@ public class Turma implements Serializable {
 		super();
 		this.user = user;
 		this.name = name;
+		this.ativo = true;
 	}
 
 	public Long getId() {
@@ -110,6 +113,14 @@ public class Turma implements Serializable {
 
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
+	}
+
+	public Boolean getAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
 	}
 	
 }
