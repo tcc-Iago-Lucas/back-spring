@@ -1,5 +1,7 @@
 package com.cm.service;
 
+import java.util.Objects;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,6 +49,10 @@ public class RespostaService {
 			}
 		});
 		
+		Resposta respondeu = repo.jaRespondeu(alternativa.getQuestao(), this.userTurma);
+		if(!Objects.isNull(respondeu)) {
+			throw new BadRequestException("Você já respondeu esse questão nessa turma");
+		}
 		
 		Resposta resposta = new Resposta(alternativa, this.userTurma);
 		

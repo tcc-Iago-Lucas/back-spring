@@ -41,6 +41,7 @@ public class Resposta implements Serializable {
 		this.alternativa = alternativa;
 		this.acertou = alternativa.getCerto();
 		this.questao = alternativa.getQuestao();
+		this.userTurma = userTurma;
 	}
 
 
