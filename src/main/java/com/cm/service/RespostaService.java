@@ -56,6 +56,7 @@ public class RespostaService {
 			throw new BadRequestException("Você já respondeu esse questão nessa turma");
 		}
 		
+		
 		Resposta resposta = new Resposta(alternativa, this.userTurma);
 		
 		resposta = repo.save(resposta);
