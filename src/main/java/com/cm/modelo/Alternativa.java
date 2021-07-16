@@ -2,6 +2,7 @@ package com.cm.modelo;
 
 import com.cm.controller.dto.AlternativaDTO;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -10,8 +11,8 @@ import java.io.Serializable;
 public class Alternativa implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id  @GeneratedValue(generator = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
     private Long id;
 
     private String alternativa;

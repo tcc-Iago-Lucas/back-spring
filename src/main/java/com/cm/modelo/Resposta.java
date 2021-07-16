@@ -1,5 +1,7 @@
 package com.cm.modelo;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import java.io.Serializable;
 
 import javax.persistence.Entity;
@@ -13,8 +15,8 @@ import javax.persistence.ManyToOne;
 public class Resposta implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id  @GeneratedValue(generator = "increment")
+	@GenericGenerator(name = "increment", strategy = "increment")
 	private Long id;
 	@ManyToOne
    	@JoinColumn( name = "id_questao")

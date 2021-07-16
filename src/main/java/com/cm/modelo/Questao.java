@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
@@ -21,8 +22,8 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 public class Questao implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id  @GeneratedValue(generator = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
 	private Long id;
 
     private String enuciado;
