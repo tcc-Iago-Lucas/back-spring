@@ -17,6 +17,9 @@ public class UserService {
 	
 	@Autowired
 	private UserRepository repo;
+
+	@Autowired
+	private TokenService tokenService;
 	
 	
 	
@@ -64,4 +67,7 @@ public class UserService {
 		
 	}
 
+    public UserDTO profile(String token) {
+		return show(tokenService.getIdUser(token.substring(7, token.length())));
+    }
 }

@@ -1,8 +1,10 @@
 package com.cm.controller.dto;
 
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+
 public class LoginDTO {
 	private String email;
-	private String senha;
+	private String password;
 	
 
 	public LoginDTO() {
@@ -14,7 +16,7 @@ public class LoginDTO {
 	public LoginDTO(String email, String senha) {
 		super();
 		this.email = email;
-		this.senha = senha;
+		this.password = senha;
 	}
 
 
@@ -28,14 +30,17 @@ public class LoginDTO {
 	}
 
 
-	public String getSenha() {
-		return senha;
+	public String getPassword() {
+		return password;
 	}
 
 
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
-	
+	public UsernamePasswordAuthenticationToken converter() {
+		System.out.println("email: " + email + " senha: " + password);
+		return new UsernamePasswordAuthenticationToken(email, password);
+	}
 }

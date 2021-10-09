@@ -1,5 +1,6 @@
 package com.cm.controller;
 
+import com.cm.controller.dto.LoginDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -29,8 +30,8 @@ public class AuthCrontroller {
 
 	
 	@PostMapping
-	public ResponseEntity<?> login(@RequestBody CadastrarDTO cadastrarDTO){
-		UsernamePasswordAuthenticationToken dadosLogin = cadastrarDTO.converter();
+	public ResponseEntity<?> login(@RequestBody LoginDTO loginDTO){
+		UsernamePasswordAuthenticationToken dadosLogin = loginDTO.converter();
 		try {
 			Authentication authentication = authManager.authenticate(dadosLogin);
 			String token = tokenService.gerarToken(authentication);
