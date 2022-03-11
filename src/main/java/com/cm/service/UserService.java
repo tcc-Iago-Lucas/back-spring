@@ -2,6 +2,7 @@ package com.cm.service;
 
 import java.util.Optional;
 
+import com.cm.controller.exception.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,10 @@ public class UserService {
 	
 	
 	public User create(CadastrarDTO cadastro) {
+		Optional<User> op = repo.findByEmail(cadastro.getEmail());
+		if(op.isPresent()){
+			throw  new BadRequestException("Usuario já existe com esse email: " + cadastro.getEmail());
+		}
 		User u = new User(cadastro);
 		BCryptPasswordEncoder hashPassowrd = new BCryptPasswordEncoder();
 		u.setSenha(hashPassowrd.encode(cadastro.getPassword()));

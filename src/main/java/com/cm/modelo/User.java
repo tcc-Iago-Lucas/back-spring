@@ -30,6 +30,7 @@ public class User implements UserDetails{
 	@GenericGenerator(name = "increment", strategy = "increment")
 	private Long id;
 	private String nome;
+	@Column(nullable = false, length = 50 , unique= true)
 	private String email;
 	private String senha;
 	@JsonBackReference
