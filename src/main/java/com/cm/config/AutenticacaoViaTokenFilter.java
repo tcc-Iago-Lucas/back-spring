@@ -36,8 +36,6 @@ public class AutenticacaoViaTokenFilter extends OncePerRequestFilter {
 		boolean valido = tokenService.isTokenValido(token);
 		if (valido) {
 			autenticarCliente(token);
-		}else{
-			response.sendError(400, "Autencação com falha");
 		}
 		
 		filterChain.doFilter(request, response);
