@@ -1,7 +1,11 @@
 package com.cm.service;
 
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
+import io.jsonwebtoken.Jws;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
@@ -38,8 +42,17 @@ public class TokenService {
 
 	public boolean isTokenValido(String token) {
 		try {
-			Jwts.parser().setSigningKey(this.secret).parseClaimsJws(token);
-			return true;
+			Jws<Claims> responseToken = Jwts.parser().setSigningKey(this.secret).parseClaimsJws(token);
+			Date expiration = responseToken.getBody().getExpiration();
+			Date hoje = new Date();
+			long diff = ChronoUnit.DAYS.between(hoje.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
+					expiration.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+			if(diff < 0){
+				return false;
+			}else{
+				return true;
+			}
+
 		} catch (Exception e) {
 			return false;
 		}

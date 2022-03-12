@@ -73,6 +73,7 @@ public class UserService {
 	}
 
     public UserDTO profile(String token) {
-		return show(tokenService.getIdUser(token.substring(7, token.length())));
+
+		return show(tokenService.getIdUser(token));
     }
 }

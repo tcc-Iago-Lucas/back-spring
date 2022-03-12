@@ -48,7 +48,7 @@ public class UserController {
 
 	@GetMapping("/profile")
 	public ResponseEntity<UserDTO> profile(@RequestHeader("Authorization") String token){
-		return ResponseEntity.ok(s.profile(token));
+		return ResponseEntity.ok(s.profile(token.substring(7, token.length())));
 	}
 	
 	@PatchMapping("/{id}")

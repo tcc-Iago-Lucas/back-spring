@@ -34,4 +34,9 @@ public class ResourceExceptionHandlder {
 		StandardError error = new StandardError(System.currentTimeMillis(), HttpStatus.BAD_REQUEST.value(), "BAD REQUEST", e.getMessage(), req.getRequestURI());
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
 	}
+	@ExceptionHandler(AutenticationException.class)
+	public ResponseEntity<StandardError> autentication(BadRequestException e, HttpServletRequest req ){
+		StandardError error = new StandardError(System.currentTimeMillis(), HttpStatus.BAD_REQUEST.value(), "BAD REQUEST", e.getMessage(), req.getRequestURI());
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+	}
 }

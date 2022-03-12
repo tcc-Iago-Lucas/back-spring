@@ -7,6 +7,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.cm.controller.exception.AutenticationException;
+import com.cm.controller.exception.BadRequestException;
+import com.cm.service.UserService;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -18,11 +21,11 @@ import com.cm.service.TokenService;
 public class AutenticacaoViaTokenFilter extends OncePerRequestFilter {
 	
 	private TokenService tokenService;
-	private UserRepository repository;
+	private UserService userService;
 
-	public AutenticacaoViaTokenFilter(TokenService tokenService, UserRepository repository) {
+	public AutenticacaoViaTokenFilter(TokenService tokenService, UserService userService) {
 		this.tokenService = tokenService;
-		this.repository = repository;
+		this.userService = userService;
 	}
 
 	@Override
@@ -33,6 +36,8 @@ public class AutenticacaoViaTokenFilter extends OncePerRequestFilter {
 		boolean valido = tokenService.isTokenValido(token);
 		if (valido) {
 			autenticarCliente(token);
+		}else{
+			response.sendError(400, "Autencação com falha");
 		}
 		
 		filterChain.doFilter(request, response);
@@ -40,9 +45,14 @@ public class AutenticacaoViaTokenFilter extends OncePerRequestFilter {
 
 	private void autenticarCliente(String token) {
 		Long idUsuario = tokenService.getIdUser(token);
-		User usuario = repository.findById(idUsuario).get();
-		UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(usuario, null, usuario.getAuthorities());
-		SecurityContextHolder.getContext().setAuthentication(authentication);
+		try{
+			User usuario =  userService.find( idUsuario);
+			UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(usuario, null, usuario.getAuthorities());
+			SecurityContextHolder.getContext().setAuthentication(authentication);
+		}catch (Exception e){
+		}
+
+
 	}
 
 	private String recuperarToken(HttpServletRequest request) {
