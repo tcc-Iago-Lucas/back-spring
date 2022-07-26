@@ -3,26 +3,37 @@ package com.cm.controller;
 import java.net.URI;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.cm.controller.dto.TemaDTO;
 import com.cm.modelo.Tema;
 import com.cm.service.TemaService;
+import springfox.documentation.annotations.ApiIgnore;
 
 @RestController
 @RequestMapping("/tema")
 public class TemaController {
 	
 	@Autowired private TemaService service;
-	
+
+	@GetMapping
+	public Page<Tema> temas(
+			@PageableDefault(sort = "id", direction = Sort.Direction.ASC, page = 0, size = 10)
+					@ApiIgnore  Pageable paginacao,
+			@RequestParam(required = false) Integer page ,
+			@RequestParam(required = false) String sort ,
+			@RequestParam(required = false) Integer size ,
+			@RequestParam(required = false) Sort.Direction direction
+			){
+		return  service.temas(paginacao);
+	}
+
 	@PostMapping
 	public ResponseEntity<?> createTema(@RequestBody TemaDTO temaDTO){
 		Tema t = service.create(temaDTO);
