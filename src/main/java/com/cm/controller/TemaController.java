@@ -42,20 +42,20 @@ public class TemaController {
 		return ResponseEntity.created(uri).build();
 	}
 	
-	@RequestMapping("/{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<Tema> showTema(@RequestHeader("Authorization") String token,  @PathVariable Long id){
 		System.out.println(token);
 		return ResponseEntity.ok(service.show(id));
 	}
 	
 	
-	@RequestMapping(path="/{id}" , method = RequestMethod.PUT)
-	public ResponseEntity<?> updateTema(@PathVariable Long id, @RequestBody TemaDTO temaDTO){
+	@PutMapping(path="/{id}" )
+	public ResponseEntity<Void> updateTema(@PathVariable Long id, @RequestBody TemaDTO temaDTO){
 		service.update(id, temaDTO);
 		return ResponseEntity.noContent().build();
 	}
 	
-	@RequestMapping(path="/{id}", method = RequestMethod.DELETE)
+	@DeleteMapping(path="/{id}")
 	public ResponseEntity<?> deleteTema(@PathVariable Long id){
 		service.delete(id);
 		return ResponseEntity.noContent().build();
