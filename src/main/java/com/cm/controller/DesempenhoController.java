@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cm.service.DesempenhoService;
 
 @RestController
-@RequestMapping("/desempenho")
+@RequestMapping("/desempenhos")
 public class DesempenhoController {
 	
 	@Autowired private DesempenhoService service;

@@ -19,7 +19,7 @@ import com.cm.service.TokenService;
 import com.cm.service.UserService;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/users")
 public class UserController {
 	@Autowired private UserService s;
 	@Autowired

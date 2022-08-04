@@ -13,7 +13,7 @@ import com.cm.modelo.Resposta;
 import com.cm.service.RespostaService;
 
 @RestController
-@RequestMapping("/resposta")
+@RequestMapping("/respostas")
 public class RespostaController {
 	@Autowired RespostaService service;
 	

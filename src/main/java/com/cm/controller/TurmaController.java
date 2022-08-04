@@ -18,7 +18,7 @@ import com.cm.modelo.Turma;
 import com.cm.service.TurmaService;
 
 @RestController
-@RequestMapping("/turma")
+@RequestMapping("/turmas")
 public class TurmaController {
 	
 	@Autowired private TurmaService service;

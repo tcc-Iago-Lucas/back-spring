@@ -17,7 +17,7 @@ import com.cm.service.TemaService;
 import springfox.documentation.annotations.ApiIgnore;
 
 @RestController
-@RequestMapping("/tema")
+@RequestMapping("/temas")
 public class TemaController {
 	
 	@Autowired private TemaService service;
