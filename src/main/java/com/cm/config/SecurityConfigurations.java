@@ -22,56 +22,56 @@ import com.cm.service.AutenticacaoService;
 @Configuration
 public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 
-	@Autowired
-	private AutenticacaoService autenticacaoService;
+    @Autowired
+    private AutenticacaoService autenticacaoService;
 
-	@Autowired
-	private com.cm.service.TokenService tokenService;
+    @Autowired
+    private com.cm.service.TokenService tokenService;
 
-	@Autowired
-	private UserService userService;
-
-
-
-	@Override
-	@Bean
-	protected AuthenticationManager authenticationManager() throws Exception {
-		return super.authenticationManager();
-	}
-
-	//Configuracoes de autenticacao
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(autenticacaoService).passwordEncoder(new BCryptPasswordEncoder());
-		/* Para criptografar uma senha
-		 *  New BCryptPasswordEncoder().encode(“senha”);
-		 * */
-	}
-
-	//Configuracoes de autorizacao
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
-		.antMatchers(HttpMethod.POST, "/auth").permitAll()
-		.antMatchers( "/user").permitAll()
-		.antMatchers( "/user/*").permitAll()
-		.antMatchers( "/turma/*").permitAll()
-		.antMatchers( "/turma").permitAll()
-		.antMatchers("/turma/*/*/*").permitAll()
-		.antMatchers(HttpMethod.POST, "/tema").authenticated()
-		.antMatchers(HttpMethod.GET, "/tema/*").authenticated()
-		.antMatchers(HttpMethod.POST, "/resposta").authenticated()
-		.anyRequest().permitAll()
-		.and().csrf().disable()
-		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-		.and().addFilterBefore(new AutenticacaoViaTokenFilter(tokenService, userService), UsernamePasswordAuthenticationFilter.class);
-	}
+    @Autowired
+    private UserService userService;
 
 
-	//Configuracoes de recursos estaticos(js, css, imagens, etc.)
-	@Override
-	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/**.html", "/v2/api-docs", "/webjars/**", "/configuration/**", "/swagger-resources/**");
-	}
+    @Override
+    @Bean
+    protected AuthenticationManager authenticationManager() throws Exception {
+        return super.authenticationManager();
+    }
+
+    //Configuracoes de autenticacao
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(autenticacaoService).passwordEncoder(new BCryptPasswordEncoder());
+        /* Para criptografar uma senha
+         *  New BCryptPasswordEncoder().encode(“senha”);
+         * */
+    }
+
+    //Configuracoes de autorizacao
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+                .antMatchers(HttpMethod.POST, "/auth").permitAll()
+                .antMatchers("/user").permitAll()
+                .antMatchers("/user/*").permitAll()
+                .antMatchers("/turma/*").permitAll()
+                .antMatchers("/turma").permitAll()
+                .antMatchers("/turma/*/*/*").permitAll()
+                .antMatchers(HttpMethod.POST, "/tema").authenticated()
+                .antMatchers(HttpMethod.GET, "/tema/*").authenticated()
+                .antMatchers(HttpMethod.POST, "/resposta").authenticated()
+                .antMatchers(HttpMethod.DELETE, "**").authenticated()
+                .anyRequest().permitAll()
+                .and().csrf().disable()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and().addFilterBefore(new AutenticacaoViaTokenFilter(tokenService, userService), UsernamePasswordAuthenticationFilter.class);
+    }
+
+
+    //Configuracoes de recursos estaticos(js, css, imagens, etc.)
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers("/**.html", "/v2/api-docs", "/webjars/**", "/configuration/**", "/swagger-resources/**");
+    }
 
 }
