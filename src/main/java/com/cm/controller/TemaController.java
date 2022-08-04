@@ -35,7 +35,7 @@ public class TemaController {
 	}
 
 	@PostMapping
-	public ResponseEntity<?> createTema(@RequestBody TemaDTO temaDTO){
+	public ResponseEntity<Void> createTema(@RequestBody TemaDTO temaDTO){
 		Tema t = service.create(temaDTO);
 		
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(t.getId()).toUri();
@@ -43,8 +43,8 @@ public class TemaController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Tema> showTema(@RequestHeader("Authorization") String token,  @PathVariable Long id){
-		System.out.println(token);
+	public ResponseEntity<Tema> showTema( @PathVariable Long id){
+
 		return ResponseEntity.ok(service.show(id));
 	}
 	
