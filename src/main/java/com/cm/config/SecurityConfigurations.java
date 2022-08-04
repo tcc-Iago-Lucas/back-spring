@@ -53,15 +53,8 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 		.antMatchers(HttpMethod.POST, "/auth").permitAll()
-		.antMatchers( "/user").permitAll()
-		.antMatchers( "/user/*").permitAll()
-		.antMatchers( "/turma/*").permitAll()
-		.antMatchers( "/turma").permitAll()
-		.antMatchers("/turma/*/*/*").permitAll()
-		.antMatchers(HttpMethod.POST, "/tema").authenticated()
-		.antMatchers(HttpMethod.GET, "/tema/*").authenticated()
-		.antMatchers(HttpMethod.POST, "/resposta").authenticated()
-		.anyRequest().permitAll()
+		.antMatchers(HttpMethod.GET, "*/*").permitAll()
+		.anyRequest().authenticated()
 		.and().csrf().disable()
 		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 		.and().addFilterBefore(new AutenticacaoViaTokenFilter(tokenService, userService), UsernamePasswordAuthenticationFilter.class);
