@@ -5,6 +5,7 @@ import com.cm.modelo.User;
 public class UserDTO {
 	private String name;
 	private String email;
+	private Long id;
 	
 	public UserDTO() {
 		
@@ -16,6 +17,7 @@ public class UserDTO {
 	public UserDTO(User u) {
 		this.email = u.getUsername();
 		this.name = u.getNome();
+		this.id = u.getId();
 	}
 	public String getName() {
 		return name;
@@ -29,8 +31,12 @@ public class UserDTO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	
 
-	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 }

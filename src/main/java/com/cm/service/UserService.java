@@ -25,16 +25,20 @@ public class UserService {
 	
 	
 	public User create(CadastrarDTO cadastro) {
-		Optional<User> op = repo.findByEmail(cadastro.getEmail());
-		if(op.isPresent()){
-			throw  new BadRequestException("Usuario já existe com esse email: " + cadastro.getEmail());
-		}
+		verificandoEmailCadastrado(cadastro.getEmail());
 		User u = new User(cadastro);
 		BCryptPasswordEncoder hashPassowrd = new BCryptPasswordEncoder();
 		u.setSenha(hashPassowrd.encode(cadastro.getPassword()));
 		return repo.save(u);
 		
 		
+	}
+
+	private void verificandoEmailCadastrado(String email){
+		Optional<User> op = repo.findByEmail(email);
+		if(op.isPresent()){
+			throw  new BadRequestException("Usuario já existe com esse email: " + email);
+		}
 	}
 
 
@@ -56,6 +60,7 @@ public class UserService {
 	public void update(Long id, UserDTO u) {
 		User user = find(id);
 		if(u.getEmail() != null && !u.getEmail().isEmpty()) {
+			verificandoEmailCadastrado(u.getEmail());
 			user.setEmail(u.getEmail());
 		}
 		if(u.getName() != null &&  !u.getName().isEmpty()) {
@@ -68,7 +73,13 @@ public class UserService {
 
 
 	public void delete(Long id) {
-			repo.delete(find(id));
+		User user = find(id);
+		if(user.getTurmas().isEmpty()){
+			repo.delete(user);
+		}else{
+			throw  new BadRequestException("Usuario cadastrado em uma turma");
+		}
+
 		
 	}
 

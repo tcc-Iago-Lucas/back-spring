@@ -70,7 +70,7 @@ public class RespostaService {
 	
 	private void temCalcularDesempenho(Alternativa alternativa) {
 		int nquestaoPorTema = alternativa.getQuestao().getTema().getQuestaos().size();
-		List<Resposta> nTemaRespondido = repo.nTemaRespondido(alternativa.getQuestao().getTema(), this.userTurma);
+		List<Resposta> nTemaRespondido = repo.TemaRespondido(alternativa.getQuestao().getTema(), this.userTurma);
 		if(nquestaoPorTema == nTemaRespondido.size()) {
 			desempenhoService.calcularPorTema(nTemaRespondido, this.userTurma);
 		}

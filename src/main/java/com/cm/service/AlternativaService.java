@@ -1,21 +1,24 @@
 package com.cm.service;
 
-import java.util.List;
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.cm.controller.dto.AlternativaDTO;
+import com.cm.controller.exception.BadRequestException;
 import com.cm.modelo.Alternativa;
 import com.cm.modelo.Questao;
 import com.cm.repository.AlternativaRepository;
 import com.cm.service.exceptions.ObjectNotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AlternativaService {
-    @Autowired private AlternativaRepository repo;
-    public void criadoJuntoQuestao(Questao questao, List<AlternativaDTO> alternativaDTOS) {
+    @Autowired
+    private AlternativaRepository repo;
+
+    public void criandoAlternativaJuntoComQuestao(Questao questao, List<AlternativaDTO> alternativaDTOS) {
 
         alternativaDTOS.forEach(a -> {
             Alternativa alternativa = new Alternativa(a);
@@ -29,10 +32,24 @@ public class AlternativaService {
 
         Optional<Alternativa> obj = repo.findById(id);
         return obj.orElseThrow(() -> new ObjectNotFoundException(
-                "Questao não encontrada com esse id: " + id));
+                "Alternativa não encontrada com esse id: " + id));
     }
-   public void delete(Long id){
+
+    public void delete(Long id) {
+        Alternativa alternativa = find(id);
+        if (alternativa.getCerto()) {
+            throw new BadRequestException("A questão não pode ficar sem a alternativa correta");
+        }
+        if (alternativa.getQuestao().getAlternativas().size() <= 2) {
+            throw new BadRequestException("A questão não pode ficar com menos de duas alternativas");
+        }
+        repo.delete(alternativa);
+
+    }
+
+    @Transactional
+    public void deleteJuntoComQuestao(Long id) {
         Alternativa alternativa = find(id);
         repo.delete(alternativa);
-   }
+    }
 }

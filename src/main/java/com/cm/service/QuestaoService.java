@@ -8,6 +8,7 @@ import com.cm.repository.QuestaoRepository;
 import com.cm.service.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Objects;
 import java.util.Optional;
@@ -18,8 +19,8 @@ public class QuestaoService {
     @Autowired private AlternativaService alternativaService;
     @Autowired private  TemaService temaService;
     public Questao create(QuestaoDTO questaoDTO) {
-        if( Objects.isNull(questaoDTO.getAlternativas()) || questaoDTO.getAlternativas().isEmpty() ){
-            throw  new BadRequestException("A questão deve ter pelo menos uma alternativa");
+        if( Objects.isNull(questaoDTO.getAlternativas()) || questaoDTO.getAlternativas().size() < 2 ){
+            throw  new BadRequestException("A questão deve ter pelo menos duas alternativa");
         }
         if(Objects.isNull(questaoDTO.getTemaId()) )
             throw  new BadRequestException("A questao precisa de um tema, por favor informe o id do tema");
@@ -30,7 +31,7 @@ public class QuestaoService {
         questao.setEnuciado(questaoDTO.getEnuciado());
         questao.setTema(tema);
         questao = repo.save(questao);
-        alternativaService.criadoJuntoQuestao(questao, questaoDTO.getAlternativas());
+        alternativaService.criandoAlternativaJuntoComQuestao(questao, questaoDTO.getAlternativas());
 
         return questao;
     }
@@ -48,10 +49,11 @@ public class QuestaoService {
         repo.save(questao);
     }
 
+    @Transactional
     public void delete(Long id) {
         Questao questao = find(id);
         questao.getAlternativas().forEach(a -> {
-            alternativaService.delete(a.getId());
+            alternativaService.deleteJuntoComQuestao(a.getId());
         });
         repo.delete(questao);
     }

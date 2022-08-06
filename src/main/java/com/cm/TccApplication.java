@@ -13,7 +13,7 @@ public class TccApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(TccApplication.class, args);
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		String password = "yawinpassword";
+		String password = "senha";
 		String encodedPassword = passwordEncoder.encode(password);
 		System.out.println();
 		System.out.println("Password is         : " + password);

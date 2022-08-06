@@ -3,6 +3,7 @@ package com.cm.service;
 
 import java.util.Optional;
 
+import com.cm.controller.exception.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -38,7 +39,12 @@ public class TemaService {
 
 	public void delete(Long id) {
 		Tema t = show(id);
-		repo.delete(t);
+		if(t.getDesempenhos().isEmpty()){
+			repo.delete(t);
+		}else{
+			throw new BadRequestException("Não é possivel apagar esse tema, ele tem questões atrelados a ele");
+		}
+
 		
 	}
 
