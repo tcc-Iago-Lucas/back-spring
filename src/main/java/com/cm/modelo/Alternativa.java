@@ -23,6 +23,8 @@ public class Alternativa implements Serializable {
     @JoinColumn( name = "questao_id")
     private Questao questao;
 
+    private String codigo;
+
     public Alternativa(AlternativaDTO a) {
         this.alternativa = a.getAlternativa();
         this.certo = a.getCerto();
@@ -65,5 +67,13 @@ public class Alternativa implements Serializable {
 
     public void setQuestao(Questao questao) {
         this.questao = questao;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 }

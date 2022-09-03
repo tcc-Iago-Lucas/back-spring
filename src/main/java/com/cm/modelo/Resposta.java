@@ -33,6 +33,9 @@ public class Resposta implements Serializable {
 	private Tema tema;
 	
 	private Boolean acertou;
+
+
+	private String codigo;
 	
 	
 	
@@ -96,8 +99,12 @@ public class Resposta implements Serializable {
 	public void setTema(Tema tema) {
 		this.tema = tema;
 	}
-	
-	
-	
 
+	public String getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
 }

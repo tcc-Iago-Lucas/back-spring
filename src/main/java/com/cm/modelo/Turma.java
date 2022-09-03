@@ -31,6 +31,8 @@ public class Turma implements Serializable {
 	private User user;
 	private String codigo;
 
+	private String codigoTurma;
+
 	private String name;
 	
 	private Boolean ativo;
@@ -123,5 +125,12 @@ public class Turma implements Serializable {
 	public void setAtivo(Boolean ativo) {
 		this.ativo = ativo;
 	}
-	
+
+	public String getCodigoTurma() {
+		return codigoTurma;
+	}
+
+	public void setCodigoTurma(String codigoTurma) {
+		this.codigoTurma = codigoTurma;
+	}
 }

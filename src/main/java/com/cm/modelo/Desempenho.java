@@ -31,7 +31,7 @@ public class Desempenho implements Serializable {
    	@JoinColumn( name = "id_userturma")
 	private UserTurma userTurma;
 
-
+	private String codigo;
     public Desempenho(){ }
 
     
@@ -86,5 +86,13 @@ public class Desempenho implements Serializable {
 	public void setUserTurma(UserTurma userTurma) {
 		this.userTurma = userTurma;
 	}
-    
+
+
+	public String getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
 }

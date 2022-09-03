@@ -21,7 +21,7 @@ public class Tema implements Serializable {
 	@GenericGenerator(name = "increment", strategy = "increment")
 	private Long id;
 
-
+	private String codigo;
 	private String tema;
 	@JsonBackReference
 	@OneToMany( mappedBy="tema")
@@ -102,6 +102,12 @@ public class Tema implements Serializable {
 			return false;
 		return true;
 	}
-	
 
+	public String getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
 }
