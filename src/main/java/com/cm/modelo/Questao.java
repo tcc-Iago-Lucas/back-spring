@@ -28,6 +28,9 @@ public class Questao implements Serializable {
 
     private String enuciado;
 
+    private String codigo;
+
+
     @JsonManagedReference
     @ManyToOne
    	@JoinColumn( name = "id_tema")
@@ -75,5 +78,13 @@ public class Questao implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 }
