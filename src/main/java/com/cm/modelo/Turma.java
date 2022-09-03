@@ -126,6 +126,7 @@ public class Turma implements Serializable {
 		this.ativo = ativo;
 	}
 
+	
 	public String getCodigoTurma() {
 		return codigoTurma;
 	}
