@@ -1,4 +1,4 @@
-package com.cm.service.exceptions;
+package com.cm.exception;
 
 public class ObjectNotFoundException extends RuntimeException {
 	private static final long serialVersionUID = 1L;

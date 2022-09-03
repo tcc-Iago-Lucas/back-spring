@@ -1,11 +1,11 @@
 package com.cm.service;
 
-import com.cm.controller.dto.AlternativaDTO;
-import com.cm.controller.exception.BadRequestException;
+import com.cm.dto.AlternativaDTO;
+import com.cm.exception.BadRequestException;
 import com.cm.modelo.Alternativa;
 import com.cm.modelo.Questao;
 import com.cm.repository.AlternativaRepository;
-import com.cm.service.exceptions.ObjectNotFoundException;
+import com.cm.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

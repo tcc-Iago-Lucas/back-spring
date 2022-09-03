@@ -11,9 +11,9 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.cm.controller.dto.CadastrarDTO;
-import com.cm.controller.dto.TokenDto;
-import com.cm.controller.dto.UserDTO;
+import com.cm.dto.CadastrarDTO;
+import com.cm.dto.TokenDto;
+import com.cm.dto.UserDTO;
 import com.cm.modelo.User;
 import com.cm.service.TokenService;
 import com.cm.service.UserService;

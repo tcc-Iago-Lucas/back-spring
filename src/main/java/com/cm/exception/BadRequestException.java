@@ -1,4 +1,4 @@
-package com.cm.controller.exception;
+package com.cm.exception;
 
 public class BadRequestException extends RuntimeException {
     /**

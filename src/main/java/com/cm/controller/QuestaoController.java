@@ -1,6 +1,6 @@
 package com.cm.controller;
 
-import com.cm.controller.dto.QuestaoDTO;
+import com.cm.dto.QuestaoDTO;
 import com.cm.modelo.Questao;
 import com.cm.service.QuestaoService;
 import org.springframework.beans.factory.annotation.Autowired;

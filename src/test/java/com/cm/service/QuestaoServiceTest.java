@@ -1,7 +1,7 @@
 package com.cm.service;
 
-import com.cm.controller.dto.AlternativaDTO;
-import com.cm.controller.dto.QuestaoDTO;
+import com.cm.dto.AlternativaDTO;
+import com.cm.dto.QuestaoDTO;
 import com.cm.modelo.Alternativa;
 import com.cm.modelo.Questao;
 import com.cm.modelo.Tema;
@@ -97,7 +97,7 @@ class QuestaoServiceTest {
 
     @Test
     void criandoQuestao() {
-        when(temaService.show(id)).thenReturn(getTema());
+        when(temaService.find(id)).thenReturn(getTema());
         when(repository.save(any(Questao.class))).thenReturn(getQuestao());
         Questao response = service.create(getQuestaoDTO(true, true));
 

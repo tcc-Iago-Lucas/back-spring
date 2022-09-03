@@ -1,10 +1,10 @@
 package com.cm.service;
 
-import com.cm.controller.dto.TemaDTO;
+import com.cm.dto.TemaDTOIn;
 import com.cm.modelo.Questao;
 import com.cm.modelo.Tema;
 import com.cm.repository.TemaRepository;
-import com.cm.service.exceptions.ObjectNotFoundException;
+import com.cm.exception.ObjectNotFoundException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -39,8 +39,8 @@ class TemaServiceTest {
         return  tema;
     }
 
-    private TemaDTO getTemaDTO() {
-        TemaDTO temaDTO = new TemaDTO();
+    private TemaDTOIn getTemaDTO() {
+        TemaDTOIn temaDTO = new TemaDTOIn();
         temaDTO.setDescricao(DESCRIPTION);
         return temaDTO;
     }
@@ -60,7 +60,7 @@ class TemaServiceTest {
     @Test
     void showTema(){
         when(repository.findById(id)).thenReturn(Optional.of(getTema()));
-        Tema response = service.show(id);
+        Tema response = service.find(id);
         assertEquals(id, response.getId());
         assertEquals(DESCRIPTION, response.getTema());
     }

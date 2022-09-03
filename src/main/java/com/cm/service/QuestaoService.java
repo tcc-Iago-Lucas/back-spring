@@ -1,11 +1,11 @@
 package com.cm.service;
 
-import com.cm.controller.dto.QuestaoDTO;
-import com.cm.controller.exception.BadRequestException;
+import com.cm.dto.QuestaoDTO;
+import com.cm.exception.BadRequestException;
 import com.cm.modelo.Questao;
 import com.cm.modelo.Tema;
 import com.cm.repository.QuestaoRepository;
-import com.cm.service.exceptions.ObjectNotFoundException;
+import com.cm.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,7 +25,7 @@ public class QuestaoService {
         if(Objects.isNull(questaoDTO.getTemaId()) )
             throw  new BadRequestException("A questao precisa de um tema, por favor informe o id do tema");
 
-        Tema tema = temaService.show(questaoDTO.getTemaId());
+        Tema tema = temaService.find(questaoDTO.getTemaId());
 
         Questao questao = new Questao();
         questao.setEnuciado(questaoDTO.getEnuciado());

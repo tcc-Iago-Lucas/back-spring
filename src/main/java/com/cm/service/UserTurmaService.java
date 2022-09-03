@@ -9,7 +9,7 @@ import com.cm.modelo.Turma;
 import com.cm.modelo.User;
 import com.cm.modelo.UserTurma;
 import com.cm.repository.UserTurmaRepository;
-import com.cm.service.exceptions.ObjectNotFoundException;
+import com.cm.exception.ObjectNotFoundException;
 
 @Service
 public class UserTurmaService {

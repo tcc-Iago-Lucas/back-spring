@@ -5,11 +5,11 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cm.controller.dto.TurmaDTO;
+import com.cm.dto.TurmaDTO;
 import com.cm.modelo.Turma;
 import com.cm.modelo.User;
 import com.cm.repository.TurmaRepository;
-import com.cm.service.exceptions.ObjectNotFoundException;
+import com.cm.exception.ObjectNotFoundException;
 import java.util.UUID;
 
 @Service

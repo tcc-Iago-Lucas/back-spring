@@ -1,4 +1,4 @@
-package com.cm.controller.exception;
+package com.cm.exception;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -8,8 +8,6 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-
-import com.cm.service.exceptions.ObjectNotFoundException;
 
 
 @ControllerAdvice

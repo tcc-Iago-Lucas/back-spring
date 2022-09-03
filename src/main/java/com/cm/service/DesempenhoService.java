@@ -1,6 +1,6 @@
 package com.cm.service;
 
-import com.cm.controller.exception.InternalErrorException;
+import com.cm.exception.InternalErrorException;
 import com.cm.modelo.Desempenho;
 import com.cm.modelo.Resposta;
 import com.cm.modelo.UserTurma;

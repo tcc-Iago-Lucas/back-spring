@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cm.controller.dto.RespostaDTO;
+import com.cm.dto.RespostaDTO;
 import com.cm.modelo.Resposta;
 import com.cm.service.RespostaService;
 

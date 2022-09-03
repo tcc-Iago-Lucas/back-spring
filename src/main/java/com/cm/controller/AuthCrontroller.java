@@ -1,6 +1,6 @@
 package com.cm.controller;
 
-import com.cm.controller.dto.LoginDTO;
+import com.cm.dto.LoginDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -12,9 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cm.controller.dto.CadastrarDTO;
-import com.cm.controller.dto.TokenDto;
-import com.cm.controller.exception.BadRequestException;
+import com.cm.dto.TokenDto;
+import com.cm.exception.BadRequestException;
 import com.cm.service.TokenService;
 
 @RestController

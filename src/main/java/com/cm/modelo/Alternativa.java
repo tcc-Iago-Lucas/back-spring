@@ -1,6 +1,6 @@
 package com.cm.modelo;
 
-import com.cm.controller.dto.AlternativaDTO;
+import com.cm.dto.AlternativaDTO;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.hibernate.annotations.GenericGenerator;
 

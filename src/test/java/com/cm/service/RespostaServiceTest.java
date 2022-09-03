@@ -1,6 +1,6 @@
 package com.cm.service;
 
-import com.cm.controller.dto.RespostaDTO;
+import com.cm.dto.RespostaDTO;
 import com.cm.modelo.*;
 import com.cm.repository.RespostaRepository;
 import org.junit.jupiter.api.Test;

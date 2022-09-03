@@ -2,16 +2,16 @@ package com.cm.service;
 
 import java.util.Optional;
 
-import com.cm.controller.exception.BadRequestException;
+import com.cm.exception.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.cm.controller.dto.CadastrarDTO;
-import com.cm.controller.dto.UserDTO;
+import com.cm.dto.CadastrarDTO;
+import com.cm.dto.UserDTO;
 import com.cm.modelo.User;
 import com.cm.repository.UserRepository;
-import com.cm.service.exceptions.ObjectNotFoundException;
+import com.cm.exception.ObjectNotFoundException;
 
 @Service
 public class UserService {

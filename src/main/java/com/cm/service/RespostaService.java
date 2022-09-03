@@ -6,8 +6,8 @@ import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cm.controller.dto.RespostaDTO;
-import com.cm.controller.exception.BadRequestException;
+import com.cm.dto.RespostaDTO;
+import com.cm.exception.BadRequestException;
 import com.cm.modelo.Alternativa;
 import com.cm.modelo.Resposta;
 import com.cm.modelo.Turma;

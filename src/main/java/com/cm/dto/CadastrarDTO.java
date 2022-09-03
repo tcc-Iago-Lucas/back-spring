@@ -1,46 +1,38 @@
-package com.cm.controller.dto;
+package com.cm.dto;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
-public class LoginDTO {
+public class CadastrarDTO {
+
+	
+	private String name;
 	private String email;
 	private String password;
 	
-
-	public LoginDTO() {
-		super();
-		// TODO Auto-generated constructor stub
+	
+	public String getName() {
+		return name;
 	}
-
-
-	public LoginDTO(String email, String senha) {
-		super();
-		this.email = email;
-		this.password = senha;
+	public void setName(String name) {
+		this.name = name;
 	}
-
-
 	public String getEmail() {
 		return email;
 	}
-
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-
 	public String getPassword() {
 		return password;
 	}
-
-
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
 	public UsernamePasswordAuthenticationToken converter() {
 		System.out.println("email: " + email + " senha: " + password);
 		return new UsernamePasswordAuthenticationToken(email, password);
 	}
+	
+	
+	
 }

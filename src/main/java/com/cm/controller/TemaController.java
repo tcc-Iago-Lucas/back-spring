@@ -2,6 +2,7 @@ package com.cm.controller;
 
 import java.net.URI;
 
+import com.cm.dto.out.TemaDTOut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.cm.controller.dto.TemaDTO;
+import com.cm.dto.TemaDTOIn;
 import com.cm.modelo.Tema;
 import com.cm.service.TemaService;
 import springfox.documentation.annotations.ApiIgnore;
@@ -35,7 +36,7 @@ public class TemaController {
 	}
 
 	@PostMapping
-	public ResponseEntity<Void> createTema(@RequestBody TemaDTO temaDTO){
+	public ResponseEntity<Void> createTema(@RequestBody TemaDTOIn temaDTO){
 		Tema t = service.create(temaDTO);
 		
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(t.getId()).toUri();
@@ -43,14 +44,14 @@ public class TemaController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Tema> showTema( @PathVariable Long id){
+	public ResponseEntity<TemaDTOut> showTema(@PathVariable Long id){
 
 		return ResponseEntity.ok(service.show(id));
 	}
 	
 	
 	@PutMapping(path="/{id}" )
-	public ResponseEntity<Void> updateTema(@PathVariable Long id, @RequestBody TemaDTO temaDTO){
+	public ResponseEntity<Void> updateTema(@PathVariable Long id, @RequestBody TemaDTOIn temaDTO){
 		service.update(id, temaDTO);
 		return ResponseEntity.noContent().build();
 	}

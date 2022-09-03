@@ -7,15 +7,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.cm.controller.exception.AutenticationException;
-import com.cm.controller.exception.BadRequestException;
 import com.cm.service.UserService;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.cm.modelo.User;
-import com.cm.repository.UserRepository;
 import com.cm.service.TokenService;
 
 public class AutenticacaoViaTokenFilter extends OncePerRequestFilter {

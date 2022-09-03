@@ -1,6 +1,6 @@
 package com.cm.service;
 
-import com.cm.controller.dto.AlternativaDTO;
+import com.cm.dto.AlternativaDTO;
 import com.cm.modelo.Alternativa;
 import com.cm.modelo.Questao;
 import com.cm.repository.AlternativaRepository;

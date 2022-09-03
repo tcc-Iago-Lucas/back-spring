@@ -1,4 +1,4 @@
-package com.cm.controller.dto;
+package com.cm.dto;
 
 import com.cm.modelo.User;
 

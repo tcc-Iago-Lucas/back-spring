@@ -1,6 +1,6 @@
-package com.cm.controller.dto;
+package com.cm.dto;
 
-public class TemaDTO {
+public class TemaDTOIn {
 
 	private String descricao;
 

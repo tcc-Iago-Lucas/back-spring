@@ -1,17 +1,16 @@
 package com.cm.service;
 
-import com.cm.controller.dto.CadastrarDTO;
-import com.cm.controller.dto.UserDTO;
+import com.cm.dto.CadastrarDTO;
+import com.cm.dto.UserDTO;
 import com.cm.modelo.Turma;
 import com.cm.modelo.User;
 import com.cm.repository.UserRepository;
-import com.cm.service.exceptions.ObjectNotFoundException;
+import com.cm.exception.ObjectNotFoundException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.ArrayList;
 import java.util.List;

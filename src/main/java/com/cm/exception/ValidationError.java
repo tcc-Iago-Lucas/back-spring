@@ -1,4 +1,4 @@
-package com.cm.controller.exception;
+package com.cm.exception;
 
 import java.util.ArrayList;
 import java.util.List;

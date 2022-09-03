@@ -1,4 +1,4 @@
-package com.cm.controller.exception;
+package com.cm.exception;
 
 public class AutenticationException extends RuntimeException {
     /**
