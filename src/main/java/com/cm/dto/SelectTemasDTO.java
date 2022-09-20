@@ -3,30 +3,30 @@ package com.cm.dto;
 import com.cm.modelo.Tema;
 
 public class SelectTemasDTO {
-    private Long id;
-    private String description;
+    private Long value;
+    private String label;
 
     public SelectTemasDTO() {
     }
 
     public SelectTemasDTO(Tema t) {
-        this.id = t.getId();
-        this.description = t.getTema();
+        this.value = t.getId();
+        this.label = t.getTema();
     }
 
-    public Long getId() {
-        return id;
+    public Long getValue() {
+        return value;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setValue(Long value) {
+        this.value = value;
     }
 
-    public String getDescription() {
-        return description;
+    public String getLabel() {
+        return label;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setLabel(String label) {
+        this.label = label;
     }
 }
