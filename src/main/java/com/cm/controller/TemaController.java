@@ -1,7 +1,9 @@
 package com.cm.controller;
 
 import java.net.URI;
+import java.util.List;
 
+import com.cm.dto.SelectTemasDTO;
 import com.cm.dto.out.TemaDTOut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -42,7 +44,10 @@ public class TemaController {
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(t.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
-	
+	@GetMapping("/select-temas")
+	public ResponseEntity<List<SelectTemasDTO>> selectTemas(){
+		return ResponseEntity.ok(service.selectTemas());
+	}
 	@GetMapping("/{id}")
 	public ResponseEntity<TemaDTOut> showTema(@PathVariable Long id){
 

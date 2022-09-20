@@ -1,8 +1,11 @@
 package com.cm.service;
 
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
+import com.cm.dto.SelectTemasDTO;
 import com.cm.dto.out.TemaDTOut;
 import com.cm.exception.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,5 +61,15 @@ public class TemaService {
 
     public Page<Tema> temas(Pageable paginacao) {
 		return repo.findAll(paginacao);
+    }
+
+    public List<SelectTemasDTO> selectTemas() {
+		List<SelectTemasDTO> selectTemasDTOS = new ArrayList<>();
+		List<Tema> temas = repo.findAll();
+		temas.forEach(t -> {
+			SelectTemasDTO selectTemasDTO = new SelectTemasDTO(t);
+			selectTemasDTOS.add(selectTemasDTO);
+		});
+		return  selectTemasDTOS;
     }
 }
