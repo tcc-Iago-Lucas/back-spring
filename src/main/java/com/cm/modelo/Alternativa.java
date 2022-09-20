@@ -23,6 +23,7 @@ public class Alternativa implements Serializable {
     @JoinColumn( name = "questao_id")
     private Questao questao;
 
+    @Column(nullable = false, length = 50 , unique= true)
     private String codigo;
 
     public Alternativa(AlternativaDTO a) {

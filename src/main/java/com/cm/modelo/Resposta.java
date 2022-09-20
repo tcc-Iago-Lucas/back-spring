@@ -4,12 +4,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 public class Resposta implements Serializable {
@@ -34,7 +29,7 @@ public class Resposta implements Serializable {
 	
 	private Boolean acertou;
 
-
+	@Column(nullable = false, length = 50 , unique= true)
 	private String codigo;
 	
 	

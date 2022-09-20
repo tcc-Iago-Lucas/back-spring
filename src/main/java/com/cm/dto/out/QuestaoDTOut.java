@@ -8,11 +8,14 @@ public class QuestaoDTOut {
 
     private String enuciado;
 
+    private String codigo;
+
     public QuestaoDTOut() {
     }
     public QuestaoDTOut(Questao questao){
         this.id = questao.getId();
         this.enuciado =questao.getEnuciado();
+        this.codigo = questao.getCodigo();
     }
 
     public Long getId() {
@@ -29,5 +32,13 @@ public class QuestaoDTOut {
 
     public void setEnuciado(String enuciado) {
         this.enuciado = enuciado;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 }

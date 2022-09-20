@@ -4,14 +4,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -29,6 +22,7 @@ public class Turma implements Serializable {
 	@ManyToOne
 	@JoinColumn( name = "user_id")
 	private User user;
+	@Column(nullable = false, length = 50 , unique= true)
 	private String codigo;
 
 	private String codigoTurma;
@@ -126,7 +120,7 @@ public class Turma implements Serializable {
 		this.ativo = ativo;
 	}
 
-	
+
 	public String getCodigoTurma() {
 		return codigoTurma;
 	}
