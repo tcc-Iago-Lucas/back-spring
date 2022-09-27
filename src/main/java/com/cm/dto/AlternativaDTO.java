@@ -4,6 +4,7 @@ public class AlternativaDTO {
 
     private String alternativa;
     private Boolean certo;
+    private String codigo;
 
     public AlternativaDTO() {
     }
@@ -27,5 +28,13 @@ public class AlternativaDTO {
 
     public void setCerto(Boolean certo) {
         this.certo = certo;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 }

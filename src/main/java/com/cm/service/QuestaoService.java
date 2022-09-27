@@ -30,6 +30,7 @@ public class QuestaoService {
         Questao questao = new Questao();
         questao.setEnuciado(questaoDTO.getEnuciado());
         questao.setTema(tema);
+        questao.setCodigo(questaoDTO.getCodigo());
         questao = repo.save(questao);
         alternativaService.criandoAlternativaJuntoComQuestao(questao, questaoDTO.getAlternativas());
 

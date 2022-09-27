@@ -7,6 +7,7 @@ public class QuestaoDTO {
     private String enuciado;
     private List<AlternativaDTO> alternativas;
     private Long temaId;
+    private String codigo;
 
     public QuestaoDTO() {
     }
@@ -31,7 +32,15 @@ public class QuestaoDTO {
         return alternativas;
     }
 
-    public void setAlternativaDTOS(List<AlternativaDTO> alternativas) {
+    public void setAlternativas(List<AlternativaDTO> alternativas) {
         this.alternativas = alternativas;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 }

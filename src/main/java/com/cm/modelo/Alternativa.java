@@ -29,6 +29,7 @@ public class Alternativa implements Serializable {
     public Alternativa(AlternativaDTO a) {
         this.alternativa = a.getAlternativa();
         this.certo = a.getCerto();
+        this.codigo = a.getCodigo();
     }
 
     public Alternativa() {
