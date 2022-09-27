@@ -47,7 +47,7 @@ class QuestaoServiceTest {
         QuestaoDTO questaoDTO = new QuestaoDTO();
         if (temId) questaoDTO.setTemaId(id);
         questaoDTO.setEnuciado(TESTE);
-        if (temAlternativas) questaoDTO.setAlternativaDTOS(getAlternativaDTOS());
+        if (temAlternativas) questaoDTO.setAlternativas(getAlternativaDTOS());
         return questaoDTO;
     }
 
