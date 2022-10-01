@@ -6,6 +6,8 @@ public class TurmaDTO {
 	
 	private String name;
 
+	private String codigo;
+
 	public Long getUser_id() {
 		return user_id;
 	}
@@ -21,6 +23,13 @@ public class TurmaDTO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
+
+
+	public String getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
 }

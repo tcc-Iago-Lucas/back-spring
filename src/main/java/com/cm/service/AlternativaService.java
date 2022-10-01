@@ -18,15 +18,18 @@ public class AlternativaService {
     @Autowired
     private AlternativaRepository repo;
 
+    @Autowired
+    private QuestaoService questaoService;
+
     public void criandoAlternativaJuntoComQuestao(Questao questao, List<AlternativaDTO> alternativaDTOS) {
 
         alternativaDTOS.forEach(a -> {
-            Alternativa alternativa = new Alternativa(a);
-            alternativa.setQuestao(questao);
-            repo.save(alternativa);
+            salvarAlternativa(questao,a);
         });
 
     }
+
+
 
     public Alternativa find(Long id) {
 
@@ -51,5 +54,22 @@ public class AlternativaService {
     public void deleteJuntoComQuestao(Long id) {
         Alternativa alternativa = find(id);
         repo.delete(alternativa);
+    }
+
+    public Alternativa create(AlternativaDTO alternativaDTO) {
+        Questao questao = questaoService.find(alternativaDTO.getQuestaoId());
+         return salvarAlternativa(questao,alternativaDTO);
+    }
+
+    private Alternativa salvarAlternativa(Questao questao, AlternativaDTO alternativaDTO) {
+        Alternativa alternativa = new Alternativa(alternativaDTO);
+        alternativa.setQuestao(questao);
+        return repo.save(alternativa);
+    }
+
+    public Alternativa findByCodigo(String alternativaCodigo) {
+        Optional<Alternativa> obj = repo.findByCodigo(alternativaCodigo);
+        return obj.orElseThrow(() -> new ObjectNotFoundException(
+                "Alternativa não encontrada com esse codigo: " + alternativaCodigo));
     }
 }

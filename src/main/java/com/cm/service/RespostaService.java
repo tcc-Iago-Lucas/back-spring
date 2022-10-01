@@ -32,7 +32,7 @@ public class RespostaService {
 		
 		Long idUsuario = tokenService.getIdUser(token.substring(7, token.length()));
 		User usuario = userService.find(idUsuario);
-		Alternativa alternativa = alternativaService.find(respostaDTO.getAlternativaId());
+		Alternativa alternativa = alternativaService.findByCodigo(respostaDTO.getAlternativaCodigo());
 		
 		
 		
@@ -57,7 +57,7 @@ public class RespostaService {
 		}
 		
 		
-		Resposta resposta = new Resposta(alternativa, this.userTurma);
+		Resposta resposta = new Resposta(alternativa, this.userTurma, respostaDTO.getCodigo());
 		
 		resposta = repo.save(resposta);
 		

@@ -21,7 +21,7 @@ public class TurmaService {
 	
 	public Turma create(TurmaDTO turmaDTO) {
 		User u = userService.find(turmaDTO.getUser_id());
-		Turma t = new Turma(u, turmaDTO.getName());
+		Turma t = new Turma(u, turmaDTO);
 		t = repo.save(t);
 		utservice.create(u,t);
 		return t;

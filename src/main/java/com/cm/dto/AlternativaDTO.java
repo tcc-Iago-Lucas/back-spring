@@ -6,6 +6,8 @@ public class AlternativaDTO {
     private Boolean certo;
     private String codigo;
 
+    private Long questaoId;
+
     public AlternativaDTO() {
     }
 
@@ -36,5 +38,13 @@ public class AlternativaDTO {
 
     public void setCodigo(String codigo) {
         this.codigo = codigo;
+    }
+
+    public Long getQuestaoId() {
+        return questaoId;
+    }
+
+    public void setQuestaoId(Long questaoId) {
+        this.questaoId = questaoId;
     }
 }

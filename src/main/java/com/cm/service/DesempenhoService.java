@@ -28,6 +28,9 @@ public class DesempenhoService {
     public Desempenho calculaDesempenho(List<Resposta> respostas, UserTurma userTurma) {
         this.acertou = 0;
         Desempenho desempenho = new Desempenho();
+        desempenho.setCodigo("Tu" + userTurma.getTurma().getCodigo()
+                + "Te" +  respostas.get(0).getTema().getCodigo() + "u"
+                + userTurma.getUser().getId());
         desempenho.setTema(respostas.get(0).getTema());
         respostas.forEach(r -> {
             if (r.getAcertou()) {

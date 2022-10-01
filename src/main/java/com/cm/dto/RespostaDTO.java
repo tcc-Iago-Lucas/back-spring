@@ -2,8 +2,9 @@ package com.cm.dto;
 
 public class RespostaDTO {
 	
-	private Long questaoId;
-	private Long alternativaId;
+	private String questaoCodigo;
+	private String alternativaCodigo;
+	private String codigo;
 	
 	
 	
@@ -14,25 +15,34 @@ public class RespostaDTO {
 	}
 	
 	
-	public RespostaDTO(Long questaoId, Long alternativaId) {
+	public RespostaDTO(String alternativaCodigo, String questaoCodigo) {
 		super();
-		this.questaoId = questaoId;
-		this.alternativaId = alternativaId;
+		this.alternativaCodigo = alternativaCodigo;
+		this.questaoCodigo = questaoCodigo;
 	}
 
 
-	public Long getQuestaoId() {
-		return questaoId;
-	}
-	
-	public void setQuestaoId(Long questãoId) {
-		this.questaoId = questãoId;
-	}
-	public Long getAlternativaId() {
-		return alternativaId;
-	}
-	public void setAlternativaId(Long alternativaId) {
-		this.alternativaId = alternativaId;
+	public String getQuestaoCodigo() {
+		return questaoCodigo;
 	}
 
+	public void setQuestaoCodigo(String questaoCodigo) {
+		this.questaoCodigo = questaoCodigo;
+	}
+
+	public String getAlternativaCodigo() {
+		return alternativaCodigo;
+	}
+
+	public void setAlternativaCodigo(String alternativaCodigo) {
+		this.alternativaCodigo = alternativaCodigo;
+	}
+
+	public String getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
 }

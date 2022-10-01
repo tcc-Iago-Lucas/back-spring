@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import com.cm.dto.TurmaDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.GenericGenerator;
@@ -39,10 +40,11 @@ public class Turma implements Serializable {
 
 	}
 
-	public Turma(User user, String name) {
+	public Turma(User user, TurmaDTO turmaDTO) {
 		super();
 		this.user = user;
-		this.name = name;
+		this.name = turmaDTO.getName();
+		this.codigo = turmaDTO.getCodigo();
 		this.ativo = true;
 	}
 

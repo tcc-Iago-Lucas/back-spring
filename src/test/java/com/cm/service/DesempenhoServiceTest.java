@@ -1,9 +1,6 @@
 package com.cm.service;
 
-import com.cm.modelo.Desempenho;
-import com.cm.modelo.Resposta;
-import com.cm.modelo.Tema;
-import com.cm.modelo.UserTurma;
+import com.cm.modelo.*;
 import com.cm.repository.DesempenhoRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -23,6 +20,7 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 class DesempenhoServiceTest {
 
+    public static final String TESTE = "teste";
     @InjectMocks
     private DesempenhoService service;
 
@@ -38,8 +36,10 @@ class DesempenhoServiceTest {
         Resposta resposta = new Resposta();
         Tema tema = new Tema();
         tema.setId(id);
-        tema.setTema("teste");
+        tema.setTema(TESTE);
+        tema.setCodigo(TESTE);
         resposta.setTema(tema);
+        resposta.setCodigo(TESTE);
         resposta.setAcertou(false);
         if(zero){
             resposta.setAcertou(false);
@@ -67,14 +67,25 @@ class DesempenhoServiceTest {
     @Test
     void calcularPorTemaDesempenhoZero(){
         List<Resposta> respostas = getRespostas(true);
-        Desempenho desempenho = service.calculaDesempenho(respostas, new UserTurma());
+        Desempenho desempenho = service.calculaDesempenho(respostas, getUserTurma());
        assertEquals(0, desempenho.getAproveitamento());
     }
 
     @Test
     void CalcularPorTemaDesempenho(){
-        Desempenho desempenho = service.calculaDesempenho(getRespostas(false), new UserTurma());
+        Desempenho desempenho = service.calculaDesempenho(getRespostas(false),getUserTurma());
         assertEquals(1, desempenho.getAproveitamento());
+    }
+
+    private UserTurma getUserTurma() {
+        UserTurma userTurma = new UserTurma();
+        Turma turma = new Turma();
+        turma.setCodigo(TESTE);
+        User user = new User();
+        user.setId(Long.valueOf(1));
+        userTurma.setTurma(turma);
+        userTurma.setUser(user);
+        return userTurma;
     }
 
 

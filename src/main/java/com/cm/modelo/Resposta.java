@@ -40,13 +40,14 @@ public class Resposta implements Serializable {
 	}
 	
 	
-	public Resposta(Alternativa alternativa, UserTurma userTurma) {
+	public Resposta(Alternativa alternativa, UserTurma userTurma, String codigo) {
 		super();
 		this.alternativa = alternativa;
 		this.acertou = alternativa.getCerto();
 		this.questao = alternativa.getQuestao();
 		this.userTurma = userTurma;
 		this.tema = alternativa.getQuestao().getTema();
+		this.codigo = codigo;
 	}
 
 

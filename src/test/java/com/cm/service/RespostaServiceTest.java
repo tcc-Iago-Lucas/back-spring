@@ -56,7 +56,7 @@ class RespostaServiceTest {
     void responderJaRespondeu () {
         when(tokenService.getIdUser(TESTE.substring(7, TESTE.length()))).thenReturn(id);
         when(userService.find(id)).thenReturn(getUser());
-        when( alternativaService.find(id)).thenReturn(getAlternativa());
+        when( alternativaService.findByCodigo(TESTE)).thenReturn(getAlternativa());
         when(repo.jaRespondeu(any(Questao.class), any(UserTurma.class))).thenReturn(new Resposta());
         try{
             service.responder(TESTE,getRespostaDTO());
@@ -68,10 +68,10 @@ class RespostaServiceTest {
     @Test
     void responder () {
         List<Resposta> respostas = new ArrayList<>();
-        respostas.add(new Resposta(getAlternativa(), new UserTurma()));
+        respostas.add(new Resposta(getAlternativa(), new UserTurma(), TESTE));
         when(tokenService.getIdUser(TESTE.substring(7, TESTE.length()))).thenReturn(id);
         when(userService.find(id)).thenReturn(getUser());
-        when( alternativaService.find(id)).thenReturn(getAlternativa());
+        when( alternativaService.findByCodigo(TESTE)).thenReturn(getAlternativa());
         when(repo.jaRespondeu(any(Questao.class), any(UserTurma.class))).thenReturn(null);
        when(repo.TemaRespondido(any(Tema.class), any(UserTurma.class))).thenReturn(respostas);
         service.responder(TESTE,getRespostaDTO());
@@ -117,7 +117,7 @@ class RespostaServiceTest {
     }
 
     private RespostaDTO getRespostaDTO() {
-      return new RespostaDTO(id,id);
+      return new RespostaDTO(TESTE,TESTE);
     }
 
 
