@@ -57,7 +57,8 @@ public class RespostaService {
 		}
 		
 		
-		Resposta resposta = new Resposta(alternativa, this.userTurma, respostaDTO.getCodigo());
+		Resposta resposta = new Resposta(alternativa, this.userTurma,
+				respostaDTO.getCodigo() + this.userTurma.getUser().getId() + this.userTurma.getTurma().getCodigo() );
 		
 		resposta = repo.save(resposta);
 		
