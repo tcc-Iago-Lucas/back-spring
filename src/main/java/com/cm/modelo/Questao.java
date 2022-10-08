@@ -19,7 +19,7 @@ public class Questao implements Serializable {
     @Id  @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
 	private Long id;
-
+    @Column(nullable = false, length = 1000 , unique= true)
     private String enuciado;
 
     @Column(nullable = false, length = 50 , unique= true)
