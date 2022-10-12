@@ -2,7 +2,6 @@ package com.cm.config;
 
 import java.io.IOException;
 
-import javax.security.sasl.AuthenticationException;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +16,7 @@ import com.cm.modelo.User;
 import com.cm.service.TokenService;
 
 public class AutenticacaoViaTokenFilter extends OncePerRequestFilter {
-	
+
 	private TokenService tokenService;
 	private UserService userService;
 
@@ -29,13 +28,13 @@ public class AutenticacaoViaTokenFilter extends OncePerRequestFilter {
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
-		
+
 		String token = recuperarToken(request);
 		boolean valido = tokenService.isTokenValido(token);
 		if (valido) {
 			autenticarCliente(token);
 		}
-		
+
 		filterChain.doFilter(request, response);
 	}
 
@@ -53,17 +52,11 @@ public class AutenticacaoViaTokenFilter extends OncePerRequestFilter {
 
 	private String recuperarToken(HttpServletRequest request) {
 		String token = request.getHeader("Authorization");
-		if (token == null || token.isEmpty() ) {
+		if (token == null || token.isEmpty() || !token.startsWith("Bearer ")) {
 			return null;
-		}else{
-			if(token.startsWith("Bearer ")){
-				return token.substring(7, token.length());
-			}else{
-				return  token;
-			}
 		}
-		
 
+		return token.substring(7, token.length());
 	}
 
 }
