@@ -34,8 +34,6 @@ public class AutenticacaoViaTokenFilter extends OncePerRequestFilter {
 		boolean valido = tokenService.isTokenValido(token);
 		if (valido) {
 			autenticarCliente(token);
-		}else{
-			throw  new AuthenticationException("Acesso negado");
 		}
 		
 		filterChain.doFilter(request, response);
