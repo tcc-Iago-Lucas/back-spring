@@ -4,13 +4,7 @@ import java.net.URI;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.cm.dto.TurmaDTO;
@@ -52,6 +46,13 @@ public class TurmaController {
 	@GetMapping("/{id}/gerar-codigo")
 	public ResponseEntity<?> gerarCodigo(@PathVariable Long id){
 		return  ResponseEntity.ok( service.gerarCodigo(id));
+	}
+
+	@PostMapping("/matricular/{codigoTurma}")
+	public ResponseEntity<Void> matricular(@RequestHeader("Authorization") String token,  @PathVariable String codigoTurma){
+		service.matricular(token,codigoTurma);
+
+		return ResponseEntity.ok().build();
 	}
 	
 }

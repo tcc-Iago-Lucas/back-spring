@@ -24,7 +24,7 @@ public class TemaService {
 	@Autowired private TemaRepository repo;
 
 	public Tema create(TemaDTOIn temaDTO) {
-		Tema t = new Tema(temaDTO.getDescricao());
+		Tema t = new Tema(temaDTO);
 		return repo.save(t);
 	}
 

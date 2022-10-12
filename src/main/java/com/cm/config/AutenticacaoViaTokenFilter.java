@@ -2,6 +2,7 @@ package com.cm.config;
 
 import java.io.IOException;
 
+import javax.security.sasl.AuthenticationException;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -33,6 +34,8 @@ public class AutenticacaoViaTokenFilter extends OncePerRequestFilter {
 		boolean valido = tokenService.isTokenValido(token);
 		if (valido) {
 			autenticarCliente(token);
+		}else{
+			throw  new AuthenticationException("Acesso negado");
 		}
 		
 		filterChain.doFilter(request, response);
@@ -52,11 +55,17 @@ public class AutenticacaoViaTokenFilter extends OncePerRequestFilter {
 
 	private String recuperarToken(HttpServletRequest request) {
 		String token = request.getHeader("Authorization");
-		if (token == null || token.isEmpty() || !token.startsWith("Bearer ")) {
+		if (token == null || token.isEmpty() ) {
 			return null;
+		}else{
+			if(token.startsWith("Bearer ")){
+				return token.substring(7, token.length());
+			}else{
+				return  token;
+			}
 		}
 		
-		return token.substring(7, token.length());
+
 	}
 
 }

@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.cm.dto.TemaDTOIn;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -38,6 +39,10 @@ public class Tema implements Serializable {
 		this.tema = tema;
 	}
 
+	public Tema(TemaDTOIn temaDTOIn){
+		this.tema = temaDTOIn.getDescricao();
+		this.codigo = temaDTOIn.getCodigo();
+	}
 
 	public Tema() {}
 

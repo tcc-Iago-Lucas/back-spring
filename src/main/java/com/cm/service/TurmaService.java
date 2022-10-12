@@ -18,6 +18,7 @@ public class TurmaService {
 	@Autowired private UserService userService;
 	@Autowired private TurmaRepository repo;
 	@Autowired private UserTurmaService utservice;
+	@Autowired private TokenService tokenService;
 	
 	public Turma create(TurmaDTO turmaDTO) {
 		User u = userService.find(turmaDTO.getUser_id());
@@ -43,7 +44,11 @@ public class TurmaService {
 	}
 
 
-
+	public Turma findBycodigoTurma(String codigo){
+		Optional<Turma> obj = repo.findBycodigoTurma(codigo);
+		return obj.orElseThrow(() -> new ObjectNotFoundException(
+				"Turma não encontrada com esse codigo: " + codigo));
+	}
 	public void deleteTurma(Long id) {
 		Turma t = show(id);
 		repo.delete(t);
@@ -60,4 +65,10 @@ public class TurmaService {
 		updateTurma(t);
 		return  codigo;
     }
+
+	public void matricular(String token, String codigo) {
+		Turma t = findBycodigoTurma(codigo);
+		User user = userService.find(tokenService.getIdUser(token));
+		utservice.create(user, t);
+	}
 }
