@@ -36,10 +36,10 @@ public class RespostaService {
 		
 		
 		
-		usuario.getTurmas().forEach(t -> {
-			if(t.getAtivo()) {
-				this.haveAtivo = t.getAtivo();
-				this.setTurma(t);
+		usuario.getUsuariosTurma().forEach(t -> {
+			if(t.getTurma().getAtivo()) {
+				this.haveAtivo = t.getTurma().getAtivo();
+				this.setTurma(t.getTurma());
 			}
 		});
 		if(!this.haveAtivo) {
