@@ -39,7 +39,6 @@ class DesempenhoServiceTest {
         tema.setTema(TESTE);
         tema.setCodigo(TESTE);
         resposta.setTema(tema);
-        resposta.setCodigo(TESTE);
         resposta.setAcertou(false);
         if(zero){
             resposta.setAcertou(false);

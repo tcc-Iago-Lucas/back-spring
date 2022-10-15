@@ -68,7 +68,8 @@ public class TurmaService {
 
 	public void matricular(String token, String codigo) {
 		Turma t = findBycodigoTurma(codigo);
-		User user = userService.find(tokenService.getIdUser(token));
+		User user = userService.find(tokenService.getIdUser(token.substring(7, token.length())));
+
 		utservice.create(user, t);
 	}
 }

@@ -29,8 +29,6 @@ public class Resposta implements Serializable {
 	
 	private Boolean acertou;
 
-	@Column(nullable = false, length = 50 , unique= true)
-	private String codigo;
 	
 	
 	
@@ -40,14 +38,14 @@ public class Resposta implements Serializable {
 	}
 	
 	
-	public Resposta(Alternativa alternativa, UserTurma userTurma, String codigo) {
+	public Resposta(Alternativa alternativa, UserTurma userTurma) {
 		super();
 		this.alternativa = alternativa;
 		this.acertou = alternativa.getCerto();
 		this.questao = alternativa.getQuestao();
 		this.userTurma = userTurma;
 		this.tema = alternativa.getQuestao().getTema();
-		this.codigo = codigo;
+
 	}
 
 
@@ -96,11 +94,5 @@ public class Resposta implements Serializable {
 		this.tema = tema;
 	}
 
-	public String getCodigo() {
-		return codigo;
-	}
 
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
-	}
 }

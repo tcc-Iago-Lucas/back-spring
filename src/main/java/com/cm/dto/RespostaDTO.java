@@ -4,7 +4,6 @@ public class RespostaDTO {
 	
 	private String questaoCodigo;
 	private String alternativaCodigo;
-	private String codigo;
 	
 	
 	
@@ -38,11 +37,5 @@ public class RespostaDTO {
 		this.alternativaCodigo = alternativaCodigo;
 	}
 
-	public String getCodigo() {
-		return codigo;
-	}
 
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
-	}
 }

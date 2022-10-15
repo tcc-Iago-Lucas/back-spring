@@ -68,7 +68,7 @@ class RespostaServiceTest {
     @Test
     void responder () {
         List<Resposta> respostas = new ArrayList<>();
-        respostas.add(new Resposta(getAlternativa(), new UserTurma(), TESTE));
+        respostas.add(new Resposta(getAlternativa(), new UserTurma()));
         when(tokenService.getIdUser(TESTE.substring(7, TESTE.length()))).thenReturn(id);
         when(userService.find(id)).thenReturn(getUser());
         when( alternativaService.findByCodigo(TESTE)).thenReturn(getAlternativa());

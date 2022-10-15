@@ -1,5 +1,6 @@
 package com.cm.service;
 
+import com.cm.dto.DesempenhoDTO;
 import com.cm.exception.InternalErrorException;
 import com.cm.modelo.Desempenho;
 import com.cm.modelo.Resposta;
@@ -54,4 +55,6 @@ public class DesempenhoService {
     }
 
 
+    public void calcular(String token, DesempenhoDTO desempenhoDTO) {
+    }
 }
