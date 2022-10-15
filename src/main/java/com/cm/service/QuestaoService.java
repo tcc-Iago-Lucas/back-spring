@@ -58,9 +58,9 @@ public class QuestaoService {
     @Transactional
     public void delete(Long id) {
         Questao questao = find(id);
-        questao.getAlternativas().forEach(a -> {
-            alternativaService.deleteJuntoComQuestao(a.getId());
-        });
+        if(!questao.getAlternativas().isEmpty()){
+            throw new BadRequestException("essa questão tem alternativas, nao pode ser apagada");
+        }
         repo.delete(questao);
     }
 

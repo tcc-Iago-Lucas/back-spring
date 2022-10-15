@@ -27,4 +27,7 @@ public class UserTurmaService {
 				"Não foi encrontado usuario de turma com esse id: " + id));
 	}
 
+	public UserTurma findUserTurmaAtivabyUser(Long idUser){
+		return null;
+	}
 }

@@ -40,7 +40,6 @@ public class LoginDTO {
 	}
 
 	public UsernamePasswordAuthenticationToken converter() {
-		System.out.println("email: " + email + " senha: " + password);
 		return new UsernamePasswordAuthenticationToken(email, password);
 	}
 }

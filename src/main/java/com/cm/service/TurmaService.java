@@ -70,6 +70,8 @@ public class TurmaService {
 		Turma t = findBycodigoTurma(codigo);
 		User user = userService.find(tokenService.getIdUser(token.substring(7, token.length())));
 
+
+
 		utservice.create(user, t);
 	}
 }
