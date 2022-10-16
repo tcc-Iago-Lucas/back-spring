@@ -45,6 +45,7 @@ public class Turma implements Serializable {
 		this.user = user;
 		this.name = turmaDTO.getName();
 		this.codigo = turmaDTO.getCodigo();
+		this.codigoTurma = turmaDTO.getCodigo();
 		this.ativo = true;
 	}
 

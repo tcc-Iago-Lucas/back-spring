@@ -2,6 +2,7 @@ package com.cm.service;
 
 import java.util.Optional;
 
+import com.cm.exception.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,11 +21,14 @@ public class TurmaService {
 	@Autowired private UserTurmaService utservice;
 	@Autowired private TokenService tokenService;
 	
-	public Turma create(TurmaDTO turmaDTO) {
-		User u = userService.find(turmaDTO.getUser_id());
+	public Turma create(String token, TurmaDTO turmaDTO) {
+		User u = userService.find(tokenService.getIdUser(token.substring(7)));
+		Optional<Turma> optionalTurma = repo.findByCodigo(turmaDTO.getCodigo());
+		if (optionalTurma.isPresent()){
+			throw new BadRequestException("Já tem turma com esse codigo");
+		}
 		Turma t = new Turma(u, turmaDTO);
 		t = repo.save(t);
-		utservice.create(u,t);
 		return t;
 	}
 	
@@ -49,9 +53,14 @@ public class TurmaService {
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Turma não encontrada com esse codigo: " + codigo));
 	}
-	public void deleteTurma(Long id) {
+	public void deleteTurma(String token, Long id) {
+		User u = userService.find(tokenService.getIdUser(token.substring(7)));
 		Turma t = show(id);
-		repo.delete(t);
+		if(!u.getId().equals(t.getUser().getId())){
+			throw  new BadRequestException("Voce nao pode excluir essa turma");
+		}
+		t.setAtivo(false);
+		repo.save(t);
 		
 	}
 	public void updateTurma(Turma t){
@@ -70,7 +79,11 @@ public class TurmaService {
 		Turma t = findBycodigoTurma(codigo);
 		User user = userService.find(tokenService.getIdUser(token.substring(7, token.length())));
 
-
+		user.getUsuariosTurma().forEach(ut -> {
+			if(ut.getTurma().getAtivo()){
+				throw  new BadRequestException("Você já está ativo em uma turma");
+			}
+		});
 
 		utservice.create(user, t);
 	}

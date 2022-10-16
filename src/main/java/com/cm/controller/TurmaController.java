@@ -18,8 +18,8 @@ public class TurmaController {
 	@Autowired private TurmaService service;
 
 	@PostMapping
-	public ResponseEntity<Object> create(@RequestBody TurmaDTO turmaDTO) {
-		Turma t = service.create(turmaDTO);
+	public ResponseEntity<Object> create(@RequestHeader("Authorization") String token,@RequestBody TurmaDTO turmaDTO) {
+		Turma t = service.create(token,turmaDTO);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(t.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
@@ -37,8 +37,8 @@ public class TurmaController {
 	
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<?> deleteTurma(@PathVariable Long id){
-		service.deleteTurma(id);
+	public ResponseEntity<?> deleteTurma(@RequestHeader("Authorization") String token, @PathVariable Long id){
+		service.deleteTurma(token,id);
 		return ResponseEntity.ok().build();
 		
 	}

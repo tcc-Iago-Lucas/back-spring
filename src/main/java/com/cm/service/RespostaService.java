@@ -29,12 +29,12 @@ public class RespostaService {
 	private UserTurma userTurma = new UserTurma();
 	
 	public Resposta responder(String token, RespostaDTO respostaDTO) {
-		
+		this.haveAtivo = false;
 		Long idUsuario = tokenService.getIdUser(token.substring(7, token.length()));
 		User usuario = userService.find(idUsuario);
 		Alternativa alternativa = alternativaService.findByCodigo(respostaDTO.getAlternativaCodigo());
 		
-		
+
 		
 		usuario.getUsuariosTurma().forEach(t -> {
 			if(t.getTurma().getAtivo()) {
@@ -62,7 +62,7 @@ public class RespostaService {
 		resposta = repo.save(resposta);
 		
 		temCalcularDesempenho(alternativa);
-		
+
 		
 		return resposta;
 		
