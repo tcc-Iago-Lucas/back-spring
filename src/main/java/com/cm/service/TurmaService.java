@@ -4,6 +4,8 @@ import java.util.Optional;
 
 import com.cm.exception.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.cm.dto.TurmaDTO;
@@ -87,4 +89,8 @@ public class TurmaService {
 
 		utservice.create(user, t);
 	}
+
+    public Page<Turma> turmas(Pageable paginacao) {
+		return  repo.findAll(paginacao);
+    }
 }

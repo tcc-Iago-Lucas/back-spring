@@ -3,6 +3,10 @@ package com.cm.controller;
 import java.net.URI;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -10,6 +14,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.cm.dto.TurmaDTO;
 import com.cm.modelo.Turma;
 import com.cm.service.TurmaService;
+import springfox.documentation.annotations.ApiIgnore;
 
 @RestController
 @RequestMapping("/turmas")
@@ -43,7 +48,7 @@ public class TurmaController {
 		
 	}
 
-	@GetMapping("/{id}/gerar-codigo")
+	@PostMapping("/{id}/gerar-codigo")
 	public ResponseEntity<?> gerarCodigo(@PathVariable Long id){
 		return  ResponseEntity.ok( service.gerarCodigo(id));
 	}
@@ -54,5 +59,18 @@ public class TurmaController {
 
 		return ResponseEntity.ok().build();
 	}
+
+	@GetMapping
+	public ResponseEntity<Page<Turma>> pageTurma(
+			@PageableDefault(sort = "id", direction = Sort.Direction.ASC, page = 0, size = 10)
+			@ApiIgnore Pageable paginacao,
+			@RequestParam(required = false) Integer page ,
+			@RequestParam(required = false) String sort ,
+			@RequestParam(required = false) Integer size ,
+			@RequestParam(required = false) Sort.Direction direction
+	){
+		return ResponseEntity.ok(service.turmas(paginacao));
+	}
+
 	
 }
