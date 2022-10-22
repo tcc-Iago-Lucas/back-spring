@@ -8,6 +8,7 @@ public class CadastrarDTO {
 	private String name;
 	private String email;
 	private String password;
+	private String userName;
 	
 	
 	public String getName() {
@@ -28,10 +29,16 @@ public class CadastrarDTO {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public UsernamePasswordAuthenticationToken converter() {
-		return new UsernamePasswordAuthenticationToken(email, password);
+	public String getUserName() {
+		return userName;
 	}
-	
-	
-	
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	public UsernamePasswordAuthenticationToken converter() {
+		return new UsernamePasswordAuthenticationToken(userName, password);
+	}
+
+
 }

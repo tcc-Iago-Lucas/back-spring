@@ -35,6 +35,7 @@ class UserServiceTest {
     private Long id = Long.valueOf(1);
     private  String email = "teste@ts.com";
     private  String name = "name";
+    private String userName = "userName";
 
 
 
@@ -43,6 +44,7 @@ class UserServiceTest {
         User user = new User();
         user.setId(id);
         user.setEmail(email);
+        user.setUserName(userName);
         user.setNome(name);
 
         return user;
@@ -51,6 +53,7 @@ class UserServiceTest {
         CadastrarDTO cadastrarDTO = new CadastrarDTO();
         cadastrarDTO.setEmail(email);
         cadastrarDTO.setName(name);
+        cadastrarDTO.setUserName(userName);
         cadastrarDTO.setPassword("senha");
         return  cadastrarDTO;
     }
@@ -77,8 +80,9 @@ class UserServiceTest {
         when(repository.findByEmail(email)).thenReturn(Optional.empty());
         when(repository.save(any(User.class))).thenReturn(getUser());
         User response = service.create(getCadastrarDTO());
-        assertEquals(email,response.getUsername());
+        assertEquals(email,response.getEmail());
         assertEquals(name,response.getNome());
+        assertEquals(userName, response.getUsername());
     }
 
     @Test

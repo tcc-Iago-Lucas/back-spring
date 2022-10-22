@@ -32,6 +32,9 @@ public class User implements UserDetails{
 	private String nome;
 	@Column(nullable = false, length = 50 , unique= true)
 	private String email;
+	@Column(nullable = false, length = 15 , unique= true)
+	private String nickname;
+
 	private String senha;
 	@JsonBackReference
 	@OneToMany( mappedBy="user")
@@ -49,19 +52,24 @@ public class User implements UserDetails{
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
-	
-	public User(String nome, String email, String senha) {
+
+	public void setUserName(String nickName) {
+		this.nickname = nickName;
+	}
+
+	public User(String nome, String email, String senha, String username) {
 		super();
 		this.nome = nome;
 		this.email = email;
 		this.senha = senha;
+		this.nickname = username;
 	}
 
 	public User(CadastrarDTO cadastro) {
 		this.nome = cadastro.getName();
 		this.email = cadastro.getEmail();
 		this.senha = cadastro.getPassword();
+		this.nickname = cadastro.getUserName();
 	}
 	public User() {
 		
@@ -115,11 +123,17 @@ public class User implements UserDetails{
 
 	@Override
 	public String getUsername() {
-		// TODO Auto-generated method stub
-		return this.email;
+		return this.nickname;
 	}
-	
-	
+
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+
 
 	@Override
 	public boolean isAccountNonExpired() {

@@ -20,6 +20,8 @@ public class Tema implements Serializable {
 	@Column(nullable = false, length = 50 , unique= true)
 	private String codigo;
 	private String tema;
+
+	private Boolean temaJogo;
 	@JsonBackReference
 	@OneToMany( mappedBy="tema")
 	private List<Desempenho> desempenhos = new ArrayList<>();
@@ -110,5 +112,13 @@ public class Tema implements Serializable {
 
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
+	}
+
+	public Boolean getTemaJogo() {
+		return temaJogo;
+	}
+
+	public void setTemaJogo(Boolean temaJogo) {
+		this.temaJogo = temaJogo;
 	}
 }

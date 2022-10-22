@@ -3,7 +3,7 @@ package com.cm.dto;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
 public class LoginDTO {
-	private String email;
+	private String userName;
 	private String password;
 	
 
@@ -13,20 +13,20 @@ public class LoginDTO {
 	}
 
 
-	public LoginDTO(String email, String senha) {
+	public LoginDTO(String userName, String senha) {
 		super();
-		this.email = email;
+		this.userName = userName;
 		this.password = senha;
 	}
 
 
-	public String getEmail() {
-		return email;
+	public String getUserName() {
+		return userName;
 	}
 
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 
@@ -40,6 +40,6 @@ public class LoginDTO {
 	}
 
 	public UsernamePasswordAuthenticationToken converter() {
-		return new UsernamePasswordAuthenticationToken(email, password);
+		return new UsernamePasswordAuthenticationToken(userName, password);
 	}
 }

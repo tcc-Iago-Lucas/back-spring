@@ -11,5 +11,6 @@ import com.cm.modelo.User;
 public interface UserRepository extends JpaRepository<User, Long> {
 
 	Optional<User> findByEmail(String username);
+	Optional<User> findByNickname(String username);
 
 }
