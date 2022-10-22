@@ -67,8 +67,10 @@ public class TemaService {
 		List<SelectTemasDTO> selectTemasDTOS = new ArrayList<>();
 		List<Tema> temas = repo.findAll();
 		temas.forEach(t -> {
-			SelectTemasDTO selectTemasDTO = new SelectTemasDTO(t);
-			selectTemasDTOS.add(selectTemasDTO);
+			if(!t.getTemaJogo()) {
+				SelectTemasDTO selectTemasDTO = new SelectTemasDTO(t);
+				selectTemasDTOS.add(selectTemasDTO);
+			}
 		});
 		return  selectTemasDTOS;
     }

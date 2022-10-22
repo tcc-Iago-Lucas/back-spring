@@ -24,6 +24,7 @@ public class QuestaoService {
     @Autowired private AlternativaService alternativaService;
     @Autowired private  TemaService temaService;
     public Questao create(QuestaoDTO questaoDTO) {
+
         if( Objects.isNull(questaoDTO.getAlternativas()) || questaoDTO.getAlternativas().size() < 2 ){
             throw  new BadRequestException("A questão deve ter pelo menos duas alternativa");
         }
@@ -31,7 +32,9 @@ public class QuestaoService {
             throw  new BadRequestException("A questao precisa de um tema, por favor informe o id do tema");
 
         Tema tema = temaService.find(questaoDTO.getTemaId());
-
+        if(tema.getTemaJogo()){
+            throw  new BadRequestException("Não é possivel criar uma questão para esse tema , pois é tema do jogo");
+        }
         Questao questao = new Questao();
         questao.setEnuciado(questaoDTO.getEnuciado());
         questao.setTema(tema);
