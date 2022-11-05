@@ -23,7 +23,7 @@ public class UserTurma implements Serializable {
 	@GenericGenerator(name = "increment", strategy = "increment")
 	private Long id;
 	
-	private BigDecimal ranking;
+	private Float ranking;
 	
 	@ManyToOne
 	@JsonManagedReference
@@ -39,6 +39,10 @@ public class UserTurma implements Serializable {
 
 		this.user = user;
 		this.turma = turma;
+	}
+
+	public Long getId() {
+		return id;
 	}
 
 	public UserTurma() {
@@ -61,10 +65,10 @@ public class UserTurma implements Serializable {
 		this.turma = turma;
 	}
 
-	public BigDecimal getRanking() {
+	public Float getRanking() {
 		return ranking;
 	}
-	public void setRanking(BigDecimal ranking) {
+	public void setRanking(Float ranking) {
 		this.ranking = ranking;
 	}
 

@@ -73,7 +73,7 @@ class RespostaServiceTest {
         when(userService.find(id)).thenReturn(getUser());
         when( alternativaService.findByCodigo(TESTE)).thenReturn(getAlternativa());
         when(repo.jaRespondeu(any(Questao.class), any(UserTurma.class))).thenReturn(null);
-       when(repo.TemaRespondido(any(Tema.class), any(UserTurma.class))).thenReturn(respostas);
+       when(repo.temaRespondido(any(Tema.class), any(UserTurma.class))).thenReturn(respostas);
         service.responder(TESTE,getRespostaDTO());
         verify(repo, times(1)).save(any(Resposta.class));
         verify(desempenhoService, times(1)).calcularPorTema(any(List.class), any(UserTurma.class));

@@ -74,4 +74,8 @@ public class TemaService {
 		});
 		return  selectTemasDTOS;
     }
+
+	public Integer totalTemas(){
+		return repo.total();
+	}
 }

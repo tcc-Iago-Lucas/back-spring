@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -21,7 +22,8 @@ public class Desempenho implements Serializable {
     @ManyToOne
 	@JoinColumn( name = "id_tema")
     private Tema tema;
-    
+
+	@JsonIgnore
 	@ManyToOne
    	@JoinColumn( name = "id_userturma")
 	private UserTurma userTurma;

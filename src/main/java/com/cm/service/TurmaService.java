@@ -93,4 +93,9 @@ public class TurmaService {
     public Page<Turma> turmas(Pageable paginacao) {
 		return  repo.findAll(paginacao);
     }
+
+	public void calcularRanking(Long idTurma) {
+		Turma turma = show(idTurma);
+		utservice.calcularRanking(turma.getUsuariosTurma());
+	}
 }

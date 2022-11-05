@@ -1,18 +1,16 @@
 package com.cm.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.cm.dto.out.RespostaUsuarioDTOut;
+import com.cm.modelo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cm.dto.RespostaDTO;
 import com.cm.exception.BadRequestException;
-import com.cm.modelo.Alternativa;
-import com.cm.modelo.Resposta;
-import com.cm.modelo.Turma;
-import com.cm.modelo.User;
-import com.cm.modelo.UserTurma;
 import com.cm.repository.RespostaRepository;
 
 @Service
@@ -23,6 +21,8 @@ public class RespostaService {
 	@Autowired private AlternativaService alternativaService;
 	@Autowired private RespostaRepository repo;
 	@Autowired private DesempenhoService desempenhoService;
+	@Autowired private TemaService temaService;
+	@Autowired private UserTurmaService userTurmaService;
 
 	private Boolean haveAtivo = false;
 	private Turma turma = new Turma() ;
@@ -70,7 +70,7 @@ public class RespostaService {
 	
 	private void temCalcularDesempenho(Alternativa alternativa) {
 		int nquestaoPorTema = alternativa.getQuestao().getTema().getQuestaos().size();
-		List<Resposta> nTemaRespondido = repo.TemaRespondido(alternativa.getQuestao().getTema(), this.userTurma);
+		List<Resposta> nTemaRespondido = repo.temaRespondido(alternativa.getQuestao().getTema(), this.userTurma);
 		if(nquestaoPorTema == nTemaRespondido.size()) {
 			desempenhoService.calcularPorTema(nTemaRespondido, this.userTurma);
 		}
@@ -87,6 +87,21 @@ public class RespostaService {
 	}
 	public void setUserTurma(UserTurma userTurma) {
 		this.userTurma = userTurma;
+	}
+
+    public List<RespostaUsuarioDTOut> respostaPorUsuarioTurma(Long userTurmaId, Long temaId) {
+		List<Resposta> respostas = repo.temaRespondido(temaService.find(temaId),userTurmaService.find(userTurmaId));
+    	List<RespostaUsuarioDTOut> respostaUsuarioDTOuts = new ArrayList<>();
+		respostas.forEach(r -> {
+			RespostaUsuarioDTOut respostaUsuarioDTOut = new RespostaUsuarioDTOut();
+			respostaUsuarioDTOut.setNomeUsuario(r.getUserTurma().getUser().getNome());
+			respostaUsuarioDTOut.setAcertou(r.getAcertou());
+			respostaUsuarioDTOut.setQuestao(r.getQuestao().getEnuciado());
+			respostaUsuarioDTOut.setTema(r.getTema().getTema());
+			respostaUsuarioDTOut.setAlternativaEscolhida(r.getAlternativa().getAlternativa());
+			respostaUsuarioDTOuts.add(respostaUsuarioDTOut);
+		});
+		return  respostaUsuarioDTOuts;
 	}
 
 }

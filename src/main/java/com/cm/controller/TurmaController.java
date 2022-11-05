@@ -72,5 +72,12 @@ public class TurmaController {
 		return ResponseEntity.ok(service.turmas(paginacao));
 	}
 
+
+	@PostMapping("/calcularRanking/{idTurma}")
+	public ResponseEntity<Void> calcularRanking(@PathVariable Long idTurma){
+		service.calcularRanking(idTurma);
+		return  ResponseEntity.ok().build();
+	}
+
 	
 }

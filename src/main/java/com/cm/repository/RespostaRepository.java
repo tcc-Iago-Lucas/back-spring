@@ -20,8 +20,7 @@ public interface RespostaRepository  extends JpaRepository<Resposta, Long> {
 
 	
 	@Query("select r from #{#entityName} r where r.userTurma = :userTurma and  r.tema = :tema")
-	List<Resposta> TemaRespondido(Tema tema, UserTurma userTurma);
+	List<Resposta> temaRespondido(Tema tema, UserTurma userTurma);
 
-	
 
 }
